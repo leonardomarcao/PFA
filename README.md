@@ -1,2 +1,2 @@
 # PFA
-Personal Financial Assistent
+Personal Financial Assistant
