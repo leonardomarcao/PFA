@@ -1,0 +1,15 @@
+.btns{
+	-fx-background-color: transparent;
+}
+
+.btns:hover{
+	-fx-background-color: #34495e;
+}
+
+.btns:selected{
+	-fx-background-color: #34495e;
+}
+
+.btns:focused{
+	-fx-background-color: #34495e;
+}

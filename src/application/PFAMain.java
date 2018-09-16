@@ -1,31 +1,44 @@
 package application;
-	
+
+import org.hibernate.SessionFactory;
+
+import dao.BuildSessionFactory;
+import javafx.animation.Animation;
+import javafx.animation.FadeTransition;
 import javafx.application.Application;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
-import javafx.fxml.FXMLLoader;
-
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import javafx.util.Duration;
 
 public class PFAMain extends Application {
+	// define your offsets here
+	private double xOffset = 0;
+	private double yOffset = 0;
+
 	@Override
 	public void start(Stage primaryStage) {
-		try{
+		try {
 			Parent root = FXMLLoader.load(getClass().getResource("/view/Login.fxml"));
-			    
+
 			Scene scene = new Scene(root);
-			    
+			
 			primaryStage.setScene(scene);
-			primaryStage.initStyle(StageStyle.TRANSPARENT);
-			primaryStage.show();		   
-		} catch(Exception e) {
+			primaryStage.resizableProperty().set(false);
+			primaryStage.initStyle(StageStyle.DECORATED);
+			primaryStage.setTitle("PFA - LOGIN");
+
+			primaryStage.show();
+			
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public static void main(String[] args) {
+		SessionFactory sessionFactory = new BuildSessionFactory().getSessionFactory();
 		launch(args);
 	}
 }

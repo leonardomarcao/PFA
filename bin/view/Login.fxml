@@ -3,6 +3,8 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.materialicons.MaterialIconView?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -18,45 +20,68 @@
          <children>
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #2196f3;" />
-                  <Pane prefHeight="351.0" prefWidth="800.0" style="-fx-background-color: #EDE7F6;" />
+                  <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #2980b9;" />
+                  <Pane prefHeight="351.0" prefWidth="800.0" style="-fx-background-color: #ecf0f1;" />
                </children>
             </VBox>
             <AnchorPane prefHeight="486.0" prefWidth="800.0" style="-fx-background-color: transparent;" StackPane.alignment="CENTER">
                <children>
-                  <AnchorPane layoutX="166.0" layoutY="113.0" prefHeight="342.0" prefWidth="469.0" style="-fx-background-color: WHITE; -fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-radius: 4; -fx-border-radius: 4; -fx-padding: 8;">
+                  <ImageView fitHeight="105.0" fitWidth="98.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../resources/assets/Logotype/bank.png" />
+                     </image>
+                  </ImageView>
+                  <AnchorPane layoutX="166.0" layoutY="109.0" prefHeight="367.0" prefWidth="469.0" style="-fx-background-color: WHITE; -fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-radius: 4; -fx-border-radius: 4; -fx-padding: 8;">
                      <children>
-                        <ImageView fitHeight="117.0" fitWidth="126.0" layoutX="175.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="117.0" fitWidth="126.0" layoutX="175.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../resources/assets/Login/login.png" />
                            </image>
                         </ImageView>
-                        <JFXTextField fx:id="jTextUsername" labelFloat="true" layoutX="75.0" layoutY="147.0" maxWidth="316.0" minWidth="233.0" prefHeight="31.0" prefWidth="316.0" promptText="Enter Username">
+                        <JFXTextField fx:id="jTextUsername" labelFloat="true" layoutX="77.0" layoutY="153.0" maxWidth="316.0" minWidth="233.0" prefHeight="31.0" prefWidth="316.0" promptText="Enter e-mail">
                            <font>
                               <Font name="Roboto Medium" size="14.0" />
                            </font>
                         </JFXTextField>
-                        <JFXPasswordField fx:id="jTextPassword" labelFloat="true" layoutX="75.0" layoutY="195.0" maxWidth="316.0" minWidth="235.0" prefHeight="31.0" prefWidth="316.0" promptText="Enter password">
+                        <JFXPasswordField fx:id="jTextPassword" labelFloat="true" layoutX="75.0" layoutY="218.0" maxWidth="316.0" minWidth="235.0" prefHeight="31.0" prefWidth="316.0" promptText="Enter password">
                            <font>
                               <Font name="Roboto Medium" size="14.0" />
                            </font>
                         </JFXPasswordField>
-                        <JFXButton layoutX="165.0" layoutY="242.0" onAction="#signIn" prefHeight="32.0" prefWidth="137.0" style="-fx-background-color: #2196f3;" text="Fazer login" textFill="WHITE">
+                        <JFXButton layoutX="165.0" layoutY="290.0" onAction="#signIn" prefHeight="32.0" prefWidth="137.0" style="-fx-background-color: #2196f3;" text="Fazer login" textFill="WHITE">
                            <font>
                               <Font name="Roboto Bold" size="14.0" />
                            </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </JFXButton>
-                        <Label layoutX="192.0" layoutY="285.0" text="Criar uma conta" textFill="#3498db" underline="true">
+                        <Label layoutX="179.0" layoutY="329.0" onMouseClicked="#signUp" text="Criar uma nova conta" textFill="#3498db" underline="true">
+                           <font>
+                              <Font name="Roboto" size="12.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Label>
+                        <Label fx:id="lblMessageUserNotFound" layoutX="161.0" layoutY="270.0" text="E-mail ou senha incorretos" textFill="RED" textOverrun="CLIP" visible="false">
                            <font>
                               <Font name="Roboto" size="12.0" />
                            </font>
                         </Label>
+                        <MaterialIconView glyphName="VPN_KEY" layoutX="46.0" layoutY="246.0" size="24" />
+                        <MaterialIconView glyphName="PERSON" layoutX="46.0" layoutY="181.0" size="24" />
                      </children>
                   </AnchorPane>
                   <VBox layoutX="188.0" layoutY="24.0" />
-                  <Label alignment="CENTER" layoutX="205.0" layoutY="67.0" prefHeight="34.0" prefWidth="425.0" text="PERSONAL FINANCIAL ASSISTENT" textAlignment="CENTER" textFill="WHITE">
+                  <Label alignment="CENTER" layoutX="188.0" layoutY="74.0" prefHeight="34.0" prefWidth="425.0" text="Personal Financial Assistant" textAlignment="CENTER" textFill="WHITE">
                      <font>
-                        <Font name="Roboto Bold" size="18.0" />
+                        <Font name="Roboto Bold" size="29.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="188.0" layoutY="14.0" prefHeight="34.0" prefWidth="425.0" text="Welcome to your" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="Roboto Bold" size="29.0" />
                      </font>
                   </Label>
                </children>
