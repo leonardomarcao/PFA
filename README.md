@@ -1,4 +1,4 @@
-## Personal Financial Assistant
+## Personal Financial Assistant - 4th semester project developed at Universidade Paulista
 <p align="center">
   <img src="https://i.imgur.com/nvRjXPj.png" alt="">
   <span size="6">PFA - Login</span>
