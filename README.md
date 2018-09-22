@@ -5,8 +5,8 @@
 </p>
 
 <p align="center">
-  <img src="https://i.imgur.com/nvRjXPj.png" alt="">
-  <span size="6">PFA - ADMIN PANEL (contains Dashboard, Despesa and Receita)</span>
+  <img src="https://i.imgur.com/IaBtkuF.png" alt="">
+  <span size="6">PFA - ADMIN PANEL (contains: Dashboard, Despesa and Receita)</span>
 </p>
 
 ### About
