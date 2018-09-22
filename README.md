@@ -1,7 +1,7 @@
 ## Personal Financial Assistant
 <p align="center">
   <img src="https://i.imgur.com/nvRjXPj.png" alt="">
-  </br><span size="6">PFA - Login</span>
+  <span size="6">PFA - Login</span>
 </p>
 
 <p align="center">
