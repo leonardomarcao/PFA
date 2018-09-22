@@ -86,7 +86,9 @@ The PFA was architected and developed to be as organized and streamlined as poss
 2. Open project.
 3. Verify and set up dependences libraries 
 4. Add source folder called "resources" (the configuration will used by Hibernate)
-5. Go to in Run configuration (using Eclipse IDE) and add the follow JVM arguments: --add-modules java.xml.bind (this is caused by JDK 10.0.2, because Hibernate tries to use for the "hibernate.cfg. xml)
+5. Go to in Run configuration (using Eclipse IDE) and on VM Options put the following: `--add-modules java.xml.bind` (this is caused by JDK 10.0.2, because Hibernate tries to use for the "hibernate.cfg. xml)
+
+On VM Options put the following:
 
 ### License 
 
