@@ -17,6 +17,7 @@ import javax.persistence.Table;
 		+ "Usuario where emailUsuario=:emailUsuario and senhaUsuario=:senhaUsuario")
 
 //Using @NamedQuery to get duplicate user
+//this will used for verify if exists user already registrated
 @NamedQuery(name = "Usuario.getUserDuplicate", query = "from "
 		+ "Usuario where emailUsuario=:emailUsuario")
 

@@ -11,6 +11,7 @@ public class UsuarioDAO {
 
 	private static SessionFactory sessionFactory;
 
+	//constructor for get session factory hibernate
 	public UsuarioDAO() {
 		sessionFactory = new BuildSessionFactory().getSessionFactory();
 	}
@@ -27,6 +28,7 @@ public class UsuarioDAO {
 
 	}
 
+	//call "get user" login from model user
 	public boolean signIn(Usuario usuarioLogin) {
 		Session session = sessionFactory.getCurrentSession();
 		try {
@@ -34,8 +36,8 @@ public class UsuarioDAO {
 
 			Usuario usuarioValidator = session.createNamedQuery("Usuario.getUserLogin", Usuario.class)
 					.setParameter("emailUsuario", usuarioLogin.getEmailUsuario())
-					.setParameter("senhaUsuario", usuarioLogin.getSenhaUsuario()).getSingleResult();
-
+					.setParameter("senhaUsuario", usuarioLogin.getSenhaUsuario())
+					.getSingleResult();
 			if (usuarioValidator != null)
 				return true;
 			return false;
@@ -46,6 +48,7 @@ public class UsuarioDAO {
 		}
 	}
 	
+	//call "get user duplicate" from model user
 	public boolean verifyUsuarioDuplicator(Usuario usuarioSignUp) {
 		Session session = sessionFactory.getCurrentSession();
 		try {

@@ -3,12 +3,10 @@ package controller;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXSpinner;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.validation.RequiredFieldValidator;
-
 import dao.UsuarioDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -43,15 +41,16 @@ public class LoginController implements Initializable {
 				usuarioLogin = new Usuario(jTextUsername.getText(), jTextPassword.getText());
 				usuarioDAO = new UsuarioDAO();
 				if (usuarioDAO.signIn(usuarioLogin)) {
-					// set new stage
+					// set new stage - admin panel
 					Parent signUp = FXMLLoader.load(getClass().getResource("/view/AdminPanel.fxml"));
 					Scene signUpScene = new Scene(signUp);
-
+					
 					Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-					window.setTitle("PFA - DASHBOARD");
+					window.setTitle("PFA - ADMIN PANEL");					
 
 					window.setScene(signUpScene);
 					window.centerOnScreen();
+					window.setMaximized(true);
 					window.show();
 				} else
 					lblMessageUserNotFound.setVisible(true);
@@ -75,7 +74,7 @@ public class LoginController implements Initializable {
 		window.show();
 	}
 
-	// validator for login
+	// validator fields for login
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		RequiredFieldValidator validatorInputRequired = new RequiredFieldValidator();
@@ -93,7 +92,6 @@ public class LoginController implements Initializable {
 				jTextPassword.validate();
 			}
 		});
-
 	}
 	
 

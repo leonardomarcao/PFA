@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXTreeTableView?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
@@ -9,26 +13,58 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="801.0" prefWidth="1037.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DespesaController">
    <children>
       <StackPane prefHeight="801.0" prefWidth="1037.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <VBox prefHeight="801.0" prefWidth="1037.0">
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <Pane prefHeight="82.0" prefWidth="1037.0" style="-fx-background-color: #ecf0f1;">
+                  <VBox alignment="CENTER" prefHeight="801.0" prefWidth="1037.0">
                      <children>
-                        <Separator layoutY="67.0" prefHeight="6.0" prefWidth="1037.0" />
-                        <Label layoutX="68.0" layoutY="12.0" text="DESPESAS">
-                           <font>
-                              <Font name="Roboto Bold" size="36.0" />
-                           </font>
-                        </Label>
-                        <FontAwesomeIconView glyphName="CALCULATOR" layoutX="23.0" layoutY="45.0" size="32" />
+                        <AnchorPane VBox.vgrow="ALWAYS">
+                           <children>
+                              <Pane style="-fx-background-color: #ecf0f1;">
+                                 <children>
+                                    <VBox prefHeight="81.0" prefWidth="1037.0">
+                                       <children>
+                                          <AnchorPane prefHeight="71.0">
+                                             <children>
+                                                <Separator layoutY="59.0" prefHeight="6.0" prefWidth="1037.0" valignment="BOTTOM" />
+                                                <Label layoutX="74.0" layoutY="9.0" text="DESPESAS">
+                                                   <font>
+                                                      <Font name="Roboto Bold" size="36.0" />
+                                                   </font>
+                                                </Label>
+                                                <FontAwesomeIconView glyphName="CALCULATOR" layoutX="27.0" layoutY="46.0" size="32" />
+                                             </children>
+                                          </AnchorPane>
+                                          <MenuBar>
+                                            <menus>
+                                              <Menu mnemonicParsing="false" text="Despesa">
+                                                <items>
+                                                  <MenuItem fx:id="menuItemInserir" mnemonicParsing="false" onAction="#menuItemInserirOnAction" text="Inserir" />
+                                                      <MenuItem mnemonicParsing="false" text="Alterar" />
+                                                      <MenuItem mnemonicParsing="false" text="Deletar" />
+                                                </items>
+                                              </Menu>
+                                              <Menu mnemonicParsing="false" text="Relatórios" />
+                                            </menus>
+                                          </MenuBar>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </Pane>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane prefHeight="743.0" prefWidth="1037.0" VBox.vgrow="ALWAYS">
+                           <children>
+                              <JFXTreeTableView prefHeight="728.0" prefWidth="1037.0" />
+                           </children>
+                        </AnchorPane>
                      </children>
-                  </Pane>
-                  <AnchorPane prefHeight="743.0" prefWidth="1037.0" />
+                  </VBox>
                </children>
-            </VBox>
+            </AnchorPane>
          </children>
       </StackPane>
    </children>
