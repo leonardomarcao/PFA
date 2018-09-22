@@ -17,8 +17,6 @@ The Personal Financial Assistant's main objective is to optimize the flow of exp
 
 The PFA was architected and developed to be as organized and streamlined as possible. We follow a whole process of development, workflow, software architecture and recent tools. The result obtained through this is the wide maintainability of the same.
 
-###
-
 ### How to configure?
 
 #### Requirements
