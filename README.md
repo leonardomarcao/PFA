@@ -1,5 +1,3 @@
-[![MIT License](https://img.shields.io/badge/license-ASF2-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0.txt)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/d113af0da84b4ab9b17b8ffc29c58ecf?branch=admin-javafx)](https://www.codacy.com/app/tiagohs/stuffs-admin?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=tiagohs/stuffs-admin&amp;utm_campaign=Badge_Grade)
 ## Personal Financial Assistant
 <p align="center">
   <img src="https://i.imgur.com/nvRjXPj.png" alt="">
