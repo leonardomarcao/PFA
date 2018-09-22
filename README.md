@@ -1,5 +1,13 @@
 ## Personal Financial Assistant
-<p align="center"><img src="https://i.imgur.com/nvRjXPj.png" alt=""></a></p>
+<p align="center">
+  <img src="https://i.imgur.com/nvRjXPj.png" alt="">
+  <span size="6">PFA - Login</span>
+</p>
+
+<p align="center">
+  <img src="https://i.imgur.com/nvRjXPj.png" alt="">
+  <span size="6">PFA - ADMIN PANEL (contains Dashboard, Despesa and Receita)</span>
+</p>
 
 ### About
 
