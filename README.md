@@ -13,7 +13,7 @@ The PFA was architected and developed to be as organized and streamlined as poss
 
 ### How to configure?
 
-####Requirements
+#### Requirements
 1. Hibernate 5.3.6
 2. JavaFx 
 3. JDK 10.0.2
