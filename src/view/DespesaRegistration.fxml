@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="355.0" prefWidth="636.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SignUpController">
+<AnchorPane prefHeight="355.0" prefWidth="636.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DespesaRegistrationController">
    <children>
       <StackPane alignment="BOTTOM_CENTER" layoutY="9.0" prefHeight="431.0" prefWidth="670.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -29,7 +29,7 @@
             </BorderPane>
             <AnchorPane prefHeight="431.0" prefWidth="611.0" style="-fx-background-color: transparent;">
                <children>
-                  <ImageView fitHeight="44.0" fitWidth="45.0" layoutX="14.0" layoutY="290.0" onMouseClicked="#backLogin" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="44.0" fitWidth="45.0" layoutX="14.0" layoutY="290.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../resources/assets/SignUp/back.png" />
                      </image>
@@ -39,7 +39,7 @@
                   </ImageView>
                   <AnchorPane layoutX="216.0" layoutY="41.0" prefHeight="246.0" prefWidth="399.0" style="-fx-background-color: WHITE; -fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5);" stylesheets="@../../resources/css/despesaregistration/style.css">
                      <children>
-                        <JFXTextField fx:id="jTextFieldNomeUsuario" labelFloat="true" layoutX="17.0" layoutY="16.0" prefHeight="25.0" prefWidth="201.0" promptText="Valor da despesa">
+                        <JFXTextField labelFloat="true" layoutX="17.0" layoutY="16.0" prefHeight="25.0" prefWidth="201.0" promptText="Valor da despesa">
                            <font>
                               <Font name="Roboto Light" size="12.0" />
                            </font>
@@ -50,7 +50,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </FontAwesomeIconView>
-                        <JFXTextField fx:id="jTextFieldNomeUsuario1" labelFloat="true" layoutX="14.0" layoutY="123.0" prefHeight="25.0" prefWidth="366.0" promptText="Descrição da despesa">
+                        <JFXTextField labelFloat="true" layoutX="14.0" layoutY="123.0" prefHeight="25.0" prefWidth="366.0" promptText="Descrição da despesa">
                            <font>
                               <Font name="Roboto Light" size="12.0" />
                            </font>
@@ -68,7 +68,7 @@
                         <Image url="@../../resources/assets/despesa/cost.png" />
                      </image>
                   </ImageView>
-                  <JFXButton buttonType="RAISED" layoutX="416.0" layoutY="303.0" onAction="#signUp" prefHeight="33.0" prefWidth="201.0" style="-fx-background-color: #3498db;" text="Cadastrar" textFill="WHITE">
+                  <JFXButton buttonType="RAISED" layoutX="416.0" layoutY="303.0" prefHeight="33.0" prefWidth="201.0" style="-fx-background-color: #3498db;" text="Cadastrar" textFill="WHITE">
                      <font>
                         <Font name="Roboto Bold" size="15.0" />
                      </font>

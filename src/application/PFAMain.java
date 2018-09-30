@@ -22,7 +22,7 @@ public class PFAMain extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			Parent root = FXMLLoader.load(getClass().getResource("/view/Login.fxml"));
+			Parent root = FXMLLoader.load(getClass().getResource("/view/SignIn.fxml"));
 
 			Scene scene = new Scene(root);
 			

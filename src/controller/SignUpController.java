@@ -75,7 +75,7 @@ public class SignUpController implements Initializable {
 	@FXML
 	void backLogin(MouseEvent event) throws IOException {
 		// set new stage
-		Parent login = FXMLLoader.load(getClass().getResource("/view/Login.fxml"));
+		Parent login = FXMLLoader.load(getClass().getResource("/view/SignIn.fxml"));
 		Scene loginScene = new Scene(login);
 
 		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -107,7 +107,7 @@ public class SignUpController implements Initializable {
 					usuarioDAO.insertUsuario(usuario);
 				} finally {
 					// change to login screen
-					Parent login = FXMLLoader.load(getClass().getResource("/view/Login.fxml"));
+					Parent login = FXMLLoader.load(getClass().getResource("/view/SignIn.fxml"));
 					Scene loginScene = new Scene(login);
 		
 					Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();

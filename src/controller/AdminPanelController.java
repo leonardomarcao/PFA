@@ -55,7 +55,7 @@ public class AdminPanelController  implements Initializable{
 		ft.setToValue(0);								
 		ft.setAutoReverse(false);
 		ft.setCycleCount(1);
-		ft.setOnFinished((ActionEvent e) -> borderPaneMain.setCenter((temp)));		
+		ft.setOnFinished((ActionEvent e) -> borderPaneMain.setCenter(temp));		
 		ft.play();				
 	}
 
