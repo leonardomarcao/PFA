@@ -46,7 +46,7 @@ public class SignUpController implements Initializable {
 
 	@FXML
 	private JFXPasswordField jTextFielSenhaVerifyUsuario;
-	
+
 	@FXML
 	private JFXTextField jTextFieldDiaUtilSalarioUsuario;
 
@@ -67,7 +67,7 @@ public class SignUpController implements Initializable {
 
 	@FXML
 	private AnchorPane frmSignUp;
-	
+
 	@FXML
 	private Label lblErrorSignUp;
 
@@ -80,7 +80,7 @@ public class SignUpController implements Initializable {
 
 		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		window.setTitle("PFA - Login");
-		
+
 		window.setScene(loginScene);
 		window.show();
 	}
@@ -89,19 +89,19 @@ public class SignUpController implements Initializable {
 	@FXML
 	void signUp(ActionEvent event) throws IOException {
 		UsuarioDAO usuarioDAOTemp = new UsuarioDAO();
-		//verify required fields
-		 if (validateFields()){
+		// verify required fields
+		if (validateFields()) {
 			Endereco enderecoUsuario = new Endereco(jTextFieldRuaEndereco.getText(),
 					Integer.parseInt((jTextFieldNumeroEndereco.getText())), jTextFieldCEPEndereco.getText(),
 					jTextFieldBairroEndereco.getText());
-			Usuario usuario = new Usuario(jTextFieldNomeUsuario.getText(), enderecoUsuario, jTextFieldCPFUsuario.getText(),
-					jTextFieldEmailUsuario.getText(), jTextFieldSenhaUsuario.getText(),
+			Usuario usuario = new Usuario(jTextFieldNomeUsuario.getText(), enderecoUsuario,
+					jTextFieldCPFUsuario.getText(), jTextFieldEmailUsuario.getText(), jTextFieldSenhaUsuario.getText(),
 					Integer.parseInt((jTextFieldDiaUtilSalarioUsuario.getText())),
 					Double.parseDouble((jTextFieldSaldoInicialUsuario.getText())));
-			//verify duplicate user
+			// verify duplicate user
 			if (usuarioDAOTemp.verifyUsuarioDuplicator(usuario)) {
 				lblErrorSignUp.setText("E-mail de usuário já cadastrado");
-			}else
+			} else
 				try {
 					UsuarioDAO usuarioDAO = new UsuarioDAO();
 					usuarioDAO.insertUsuario(usuario);
@@ -109,31 +109,31 @@ public class SignUpController implements Initializable {
 					// change to login screen
 					Parent login = FXMLLoader.load(getClass().getResource("/view/SignIn.fxml"));
 					Scene loginScene = new Scene(login);
-		
+
 					Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 					window.setTitle("PFA - Login");
-		
+
 					window.setScene(loginScene);
 					window.show();
 				}
-			}
-		 }
+		}
+	}
 
 	@FXML
 	void initialize() {
-		
+
 	}
 
-	//validator sign-up
+	// validator sign-up
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		RequiredFieldValidator validatorInputRequired = new RequiredFieldValidator();
 		validatorInputRequired.setMessage("Campo obrigatório");
-		
+
 		NumberValidator validatorNumber = new NumberValidator();
 		validatorNumber.setMessage("Somente números!");
-		
-		//required field validator add for user register
+
+		// required field validator add for user register
 		jTextFieldNomeUsuario.getValidators().add(validatorInputRequired);
 		jTextFieldCPFUsuario.getValidators().add(validatorInputRequired);
 		jTextFieldCPFUsuario.getValidators().add(validatorNumber);
@@ -144,16 +144,16 @@ public class SignUpController implements Initializable {
 		jTextFieldDiaUtilSalarioUsuario.getValidators().add(validatorNumber);
 		jTextFieldSaldoInicialUsuario.getValidators().add(validatorInputRequired);
 		jTextFieldSaldoInicialUsuario.getValidators().add(validatorNumber);
-		
-		//required field validator add for address register
+
+		// required field validator add for address register
 		jTextFieldRuaEndereco.getValidators().add(validatorInputRequired);
 		jTextFieldNumeroEndereco.getValidators().add(validatorInputRequired);
 		jTextFieldNumeroEndereco.getValidators().add(validatorNumber);
 		jTextFieldBairroEndereco.getValidators().add(validatorInputRequired);
 		jTextFieldCEPEndereco.getValidators().add(validatorInputRequired);
 		jTextFieldCEPEndereco.getValidators().add(validatorNumber);
-		
-		//set focusedproperty listener for required field validator		
+
+		// set focusedproperty listener for required field validator
 		jTextFieldNomeUsuario.focusedProperty().addListener((o, oldVal, newVal) -> {
 			if (!newVal) {
 				jTextFieldNomeUsuario.validate();
@@ -210,17 +210,16 @@ public class SignUpController implements Initializable {
 			}
 		});
 	}
-	
-	//validate fields
+
+	// validate fields
 	private Boolean validateFields() {
-		if (jTextFieldNomeUsuario.validate()&&jTextFieldCPFUsuario.validate()&&
-				jTextFieldEmailUsuario.validate()&&jTextFieldSenhaUsuario.validate()&&
-				jTextFielSenhaVerifyUsuario.validate()&&jTextFieldDiaUtilSalarioUsuario.validate()&&
-				jTextFieldSaldoInicialUsuario.validate()&&jTextFieldRuaEndereco.validate()&&
-				jTextFieldNumeroEndereco.validate()&&jTextFieldBairroEndereco.validate()&&
-				jTextFieldCEPEndereco.validate()) 
-			 return true;
-		else return false;
+		if (jTextFieldNomeUsuario.validate() && jTextFieldCPFUsuario.validate() && jTextFieldEmailUsuario.validate()
+				&& jTextFieldSenhaUsuario.validate() && jTextFielSenhaVerifyUsuario.validate()
+				&& jTextFieldDiaUtilSalarioUsuario.validate() && jTextFieldSaldoInicialUsuario.validate()
+				&& jTextFieldRuaEndereco.validate() && jTextFieldNumeroEndereco.validate()
+				&& jTextFieldBairroEndereco.validate() && jTextFieldCEPEndereco.validate())
+			return true;
+		else
+			return false;
 	}
 }
-	

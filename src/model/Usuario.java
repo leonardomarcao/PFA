@@ -12,14 +12,13 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "usuario")
 
-//Using @NamedQuery to get user 
-@NamedQuery(name = "Usuario.getUserLogin", query = "from "
-		+ "Usuario where emailUsuario=:emailUsuario and senhaUsuario=:senhaUsuario")
+//@NamedQuery to get user - sign in
+@NamedQuery(name = "Usuario.getUserLogin", query = "SELECT u FROM "
+		+ "Usuario u WHERE u.emailUsuario=:emailUsuario and u.senhaUsuario=:senhaUsuario")
 
-//Using @NamedQuery to get duplicate user
+//@NamedQuery to get duplicate user - sign up
 //this will used for verify if exists user already registrated
-@NamedQuery(name = "Usuario.getUserDuplicate", query = "from "
-		+ "Usuario where emailUsuario=:emailUsuario")
+@NamedQuery(name = "Usuario.getUserDuplicate", query = "from " + "Usuario where emailUsuario=:emailUsuario")
 
 public class Usuario {
 

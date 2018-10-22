@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXTreeTableView?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
@@ -14,63 +15,99 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPaneDespesa" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DespesaController">
-   <children>
-      <BorderPane fx:id="borderPaneDespesa" prefHeight="200.0" prefWidth="200.0">
-         <center>
-            <StackPane fx:id="stackPaneDespesa" prefHeight="801.0" prefWidth="1037.0" BorderPane.alignment="CENTER">
-               <children>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                     <children>
-                        <VBox alignment="CENTER" prefHeight="801.0" prefWidth="1037.0">
-                           <children>
-                              <AnchorPane VBox.vgrow="ALWAYS">
-                                 <children>
-                                    <Pane style="-fx-background-color: #ecf0f1;">
-                                       <children>
-                                          <VBox prefHeight="81.0" prefWidth="1037.0">
-                                             <children>
-                                                <AnchorPane prefHeight="71.0">
-                                                   <children>
-                                                      <Separator layoutY="59.0" prefHeight="6.0" prefWidth="1037.0" valignment="BOTTOM" />
-                                                      <Label layoutX="74.0" layoutY="9.0" text="DESPESAS">
-                                                         <font>
-                                                            <Font name="Roboto Bold" size="36.0" />
-                                                         </font>
-                                                      </Label>
-                                                      <FontAwesomeIconView glyphName="CALCULATOR" layoutX="27.0" layoutY="46.0" size="32" />
-                                                   </children>
-                                                </AnchorPane>
-                                                <MenuBar>
-                                                  <menus>
-                                                    <Menu mnemonicParsing="false" text="Despesa">
-                                                      <items>
-                                                        <MenuItem fx:id="menuItemInserir" mnemonicParsing="false" onAction="#menuItemInserirOnAction" text="Inserir" />
-                                                            <MenuItem mnemonicParsing="false" text="Alterar" />
-                                                            <MenuItem mnemonicParsing="false" text="Deletar" />
-                                                      </items>
-                                                    </Menu>
-                                                    <Menu mnemonicParsing="false" text="Relatórios" />
-                                                  </menus>
-                                                </MenuBar>
-                                             </children>
-                                          </VBox>
-                                       </children>
-                                    </Pane>
-                                 </children>
-                              </AnchorPane>
-                              <AnchorPane prefHeight="743.0" prefWidth="1037.0" VBox.vgrow="ALWAYS">
-                                 <children>
-                                    <JFXTreeTableView prefHeight="728.0" prefWidth="1037.0" />
-                                 </children>
-                              </AnchorPane>
-                           </children>
-                        </VBox>
-                     </children>
-                  </AnchorPane>
-               </children>
-            </StackPane>
-         </center>
-      </BorderPane>
-   </children>
+<AnchorPane fx:id="anchorPaneDespesa"
+	xmlns="http://javafx.com/javafx/10.0.1"
+	xmlns:fx="http://javafx.com/fxml/1">
+	<children>
+		<BorderPane fx:id="borderPaneDespesa" prefHeight="200.0"
+			prefWidth="200.0">
+			<center>
+				<StackPane fx:id="stackPaneDespesa" prefHeight="801.0"
+					prefWidth="1037.0" BorderPane.alignment="CENTER">
+					<children>
+						<AnchorPane prefHeight="200.0" prefWidth="200.0">
+							<children>
+								<VBox alignment="CENTER" prefHeight="801.0"
+									prefWidth="1037.0">
+									<children>
+										<AnchorPane VBox.vgrow="ALWAYS">
+											<children>
+												<Pane style="-fx-background-color: #ecf0f1;">
+													<children>
+														<VBox prefHeight="81.0" prefWidth="1037.0">
+															<children>
+																<AnchorPane prefHeight="71.0">
+																	<children>
+																		<Separator layoutY="59.0" prefHeight="6.0"
+																			prefWidth="1037.0" valignment="BOTTOM" />
+																		<Label layoutX="74.0" layoutY="9.0"
+																			text="DESPESAS">
+																			<font>
+																				<Font name="Roboto Bold" size="36.0" />
+																			</font>
+																		</Label>
+																		<FontAwesomeIconView
+																			glyphName="CALCULATOR" layoutX="27.0" layoutY="46.0"
+																			size="32" />
+																	</children>
+																</AnchorPane>
+																<MenuBar>
+																	<menus>
+																		<Menu mnemonicParsing="false" text="Menu">
+																			<items>
+																				<Menu mnemonicParsing="false" text="Despesa">
+																					<items>
+																						<MenuItem mnemonicParsing="false"
+																							onAction="#menuItemInserirOnAction"
+																							text="Inserir" />
+																						<MenuItem mnemonicParsing="false"
+																							onAction="#menuItemAlterarOnAction"
+																							text="Alterar" />
+																						<MenuItem mnemonicParsing="false"
+																							onAction="#menuItemRemoveOnAction" text="Remover" />
+																					</items>
+																				</Menu>
+																				<MenuItem mnemonicParsing="false"
+																					text="Relatório" />
+																			</items>
+																		</Menu>
+																	</menus>
+																</MenuBar>
+															</children>
+														</VBox>
+													</children>
+												</Pane>
+											</children>
+										</AnchorPane>
+										<AnchorPane prefHeight="743.0" prefWidth="1037.0"
+											VBox.vgrow="ALWAYS">
+											<children>
+												<TableView fx:id="tableViewDespesa"
+													prefHeight="714.0" prefWidth="1037.0"
+													tableMenuButtonVisible="true">
+													<columns>
+														<TableColumn fx:id="idDespesaCol"
+															prefWidth="62.0" text="ID" />
+														<TableColumn fx:id="tipoDespesaCol"
+															minWidth="0.0" prefWidth="184.0" text="Tipo" />
+														<TableColumn fx:id="descricaoDespesaCol"
+															prefWidth="406.0" text="Descrição" />
+														<TableColumn fx:id="dataDespesaCol"
+															minWidth="0.0" prefWidth="156.0" sortType="DESCENDING"
+															text="Data" />
+														<TableColumn fx:id="valorDespesaCol"
+															minWidth="0.0" prefWidth="217.0" text="Valor" />
+													</columns>
+												</TableView>
+											</children>
+										</AnchorPane>
+									</children>
+								</VBox>
+							</children>
+						</AnchorPane>
+					</children>
+				</StackPane>
+			</center>
+		</BorderPane>
+	</children>
 </AnchorPane>

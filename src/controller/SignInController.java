@@ -31,24 +31,25 @@ public class SignInController implements Initializable {
 	@FXML
 	private JFXSpinner spinnerLoading;
 
-	//this will used for stage login creation
-	private static Stage stageLogin;
 	// sign-in
 	@FXML
 	void signIn(ActionEvent event) {
 		Usuario usuarioLogin = null;
-		UsuarioDAO usuarioDAO = null;
 		if (jTextUsername.validate() && jTextPassword.validate()) {
 			try {
-				usuarioLogin = new Usuario(jTextUsername.getText(), jTextPassword.getText());
-				usuarioDAO = new UsuarioDAO();
-				if (usuarioDAO.signIn(usuarioLogin)) {
+				usuarioLogin = new UsuarioDAO().signIn(jTextUsername.getText(), jTextPassword.getText());
+				if (usuarioLogin != null) {
+					System.out.println("Usuário na tela de login: " + usuarioLogin.getCPFUsuario());
+					AdminPanelController adminPanelController = new AdminPanelController(usuarioLogin);
+					FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/AdminPanel.fxml"));
+					loader.setController(adminPanelController);
 					// set new stage - admin panel
-					Parent signUp = FXMLLoader.load(getClass().getResource("/view/AdminPanel.fxml"));
+					Parent signUp = (Parent) loader.load();
+
 					Scene signUpScene = new Scene(signUp);
-					
+
 					Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-					window.setTitle("PFA - ADMIN PANEL");					
+					window.setTitle("PFA - ADMIN PANEL");
 
 					window.setScene(signUpScene);
 					window.centerOnScreen();
@@ -56,7 +57,7 @@ public class SignInController implements Initializable {
 					window.show();
 				} else
 					lblMessageUserNotFound.setVisible(true);
-			} catch (Exception e) {
+			} catch (IOException e) {
 				System.out.println(e);
 			}
 		}
@@ -65,6 +66,8 @@ public class SignInController implements Initializable {
 	// sign-up
 	@FXML
 	void signUp(MouseEvent event) throws IOException {
+		// visible false lblMessageUserNotFound
+		lblMessageUserNotFound.setVisible(false);
 		// set new stage
 		Parent signUp = FXMLLoader.load(getClass().getResource("/view/SignUp.fxml"));
 		Scene signUpScene = new Scene(signUp);
@@ -95,6 +98,5 @@ public class SignInController implements Initializable {
 			}
 		});
 	}
-	
 
 }

@@ -10,7 +10,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+
+//Using @NamedQuery to get all data of Despesa by user
+@NamedQuery(name = "Despesa.getAllDespesa", query = "SELECT d FROM "
+		+ "Despesa d WHERE d.usuarioDespesa = :usuarioDespesa ORDER BY dataDespesa ASC")
 
 @Entity
 @Table(name = "despesa")
@@ -26,11 +31,11 @@ public class Despesa {
 	@Column(name = "descricao_despesa")
 	private String descricaoDespesa;
 
-	@ManyToOne(cascade = CascadeType.REFRESH)
+	@ManyToOne(cascade = CascadeType.DETACH)
 	@JoinColumn(name = "id_tipo_despesa")
 	private TipoDespesa tipoDespesa;
 
-	@ManyToOne(cascade = CascadeType.REFRESH)
+	@ManyToOne(cascade = CascadeType.DETACH)
 	@JoinColumn(name = "id_usuario")
 	private Usuario usuarioDespesa;
 
@@ -40,6 +45,8 @@ public class Despesa {
 	public Despesa() {
 	}
 
+	// this constructor will be used for series categoryDespesa in lineChart
+	// do not use for persistent
 	public Despesa(double _valorDespesa, Date dataDespesa) {
 		setValorDespesa(_valorDespesa);
 		setDataDespesa(dataDespesa);
@@ -50,6 +57,15 @@ public class Despesa {
 		setTipoDespesa(_tipoDespesa);
 		setUsuarioDespesa(_usuarioDespesa);
 		setDataDespesa(dataDespesa);
+	}
+
+	public Despesa(double _valorDespesa, TipoDespesa _tipoDespesa, Usuario _usuarioDespesa, Date dataDespesa,
+			String _descricaoDespesa) {
+		setValorDespesa(_valorDespesa);
+		setTipoDespesa(_tipoDespesa);
+		setUsuarioDespesa(_usuarioDespesa);
+		setDataDespesa(dataDespesa);
+		setDescricaoDespesa(_descricaoDespesa);
 	}
 
 	public TipoDespesa getTipoDespesa() {

@@ -6,6 +6,7 @@
 <?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.effect.Reflection?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -15,7 +16,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="355.0" prefWidth="636.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SignUpController">
+<AnchorPane prefHeight="355.0" prefWidth="636.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <StackPane alignment="BOTTOM_CENTER" layoutY="9.0" prefHeight="431.0" prefWidth="670.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -27,38 +28,30 @@
                   <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: WHITE;" BorderPane.alignment="CENTER" />
                </center>
             </BorderPane>
-            <AnchorPane prefHeight="431.0" prefWidth="611.0" style="-fx-background-color: transparent;">
+            <AnchorPane prefHeight="431.0" prefWidth="611.0" style="-fx-background-color: transparent;" stylesheets="@../../resources/css/receitaregistration/style.css">
                <children>
-                  <ImageView fitHeight="44.0" fitWidth="45.0" layoutX="14.0" layoutY="290.0" onMouseClicked="#backLogin" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../resources/assets/SignUp/back.png" />
-                     </image>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </ImageView>
-                  <AnchorPane layoutX="216.0" layoutY="41.0" prefHeight="246.0" prefWidth="399.0" style="-fx-background-color: WHITE; -fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5);" stylesheets="@../../resources/css/receitaregistration/style.css">
+                  <AnchorPane layoutX="216.0" layoutY="41.0" prefHeight="246.0" prefWidth="399.0" style="-fx-background-color: WHITE; -fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5);">
                      <children>
-                        <JFXTextField fx:id="jTextFieldNomeUsuario" labelFloat="true" layoutX="17.0" layoutY="16.0" prefHeight="25.0" prefWidth="201.0" promptText="Valor da receita">
+                        <JFXTextField fx:id="edtValorReceita" labelFloat="true" layoutX="17.0" layoutY="16.0" prefHeight="25.0" prefWidth="201.0" promptText="Valor da receita">
                            <font>
                               <Font name="Roboto Light" size="12.0" />
                            </font>
                         </JFXTextField>
-                        <JFXComboBox layoutX="17.0" layoutY="68.0" prefHeight="25.0" prefWidth="201.0" promptText="Tipo da receita" />
-                        <FontAwesomeIconView glyphName="PLUS_CIRCLE" layoutX="224.0" layoutY="89.0" size="24" styleClass="glyph-icon">
+                        <JFXComboBox fx:id="cxTipoReceita" layoutX="17.0" layoutY="68.0" onMouseClicked="#onMouseClickedCxTipoReceita" prefHeight="25.0" prefWidth="201.0" promptText="Tipo da receita" />
+                        <FontAwesomeIconView glyphName="PLUS_CIRCLE" layoutX="224.0" layoutY="89.0" onMouseClicked="#addTipoReceita" size="24">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </FontAwesomeIconView>
-                        <JFXTextField fx:id="jTextFieldNomeUsuario1" labelFloat="true" layoutX="14.0" layoutY="123.0" prefHeight="25.0" prefWidth="366.0" promptText="Descrição da receita">
+                        <JFXTextField fx:id="edtDescricaoReceita" labelFloat="true" layoutX="14.0" layoutY="123.0" prefHeight="25.0" prefWidth="366.0" promptText="Descrição da receita">
                            <font>
                               <Font name="Roboto Light" size="12.0" />
                            </font>
                         </JFXTextField>
-                        <JFXDatePicker layoutX="14.0" layoutY="178.0" promptText="Data da receita" />
+                        <JFXDatePicker fx:id="edtDataReceita" defaultColor="#3498db" layoutX="14.0" layoutY="178.0" promptText="Data da receita" />
                      </children>
                   </AnchorPane>
-                  <Text fill="#2c3e50" layoutX="2.0" layoutY="197.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cadastro de&#10;Receita" textAlignment="CENTER" wrappingWidth="201.0000104084611">
+                  <Text fill="#2c3e50" layoutX="216.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Receita" wrappingWidth="201.0000104084611">
                      <font>
                         <Font name="Roboto Bold" size="23.0" />
                      </font>
@@ -67,8 +60,11 @@
                      <image>
                         <Image url="@../../resources/assets/receita/money.png" />
                      </image>
+                     <effect>
+                        <Reflection fraction="0.86" topOpacity="0.51" />
+                     </effect>
                   </ImageView>
-                  <JFXButton buttonType="RAISED" layoutX="416.0" layoutY="303.0" onAction="#signUp" prefHeight="33.0" prefWidth="201.0" style="-fx-background-color: #3498db;" text="Cadastrar" textFill="WHITE">
+                  <JFXButton buttonType="RAISED" layoutX="416.0" layoutY="305.0" onMouseClicked="#saveReceita" prefHeight="33.0" prefWidth="201.0" style="-fx-background-color: #3498db;" text="Salvar" textFill="WHITE">
                      <font>
                         <Font name="Roboto Bold" size="15.0" />
                      </font>
@@ -76,6 +72,11 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </JFXButton>
+                  <FontAwesomeIconView glyphName="BACKWARD" layoutX="28.0" layoutY="328.0" onMouseClicked="#backReceita">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </FontAwesomeIconView>
                </children>
             </AnchorPane>
          </children>

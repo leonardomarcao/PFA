@@ -5,7 +5,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+
+//Using @NamedQuery to get all data of Tipo Despesa
+@NamedQuery(name = "TipoReceita.getAllTipoReceita", query = "SELECT tr FROM TipoReceita tr")
 
 @Entity
 @Table(name = "tipo_receita")
@@ -33,7 +37,7 @@ public class TipoReceita {
 		this.idtipoReceita = idtipoReceita;
 	}
 
-	public String getTipoReceita() {
+	public String getNomeTipoReceita() {
 		return nomeTipoReceita;
 	}
 

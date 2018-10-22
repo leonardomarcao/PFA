@@ -10,7 +10,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+
+//Using @NamedQuery to get all data of Despesa by user
+@NamedQuery(name = "Receita.getAllReceita", query = "SELECT r FROM "
+		+ "Receita r where r.usuarioReceita = :usuarioReceita ORDER BY dataReceita ASC")
 
 @Entity
 @Table(name = "receita")
@@ -40,13 +45,27 @@ public class Receita {
 	public Receita() {
 	}
 
-	public Receita(double _valorReceita, String _observacaoReceita, TipoReceita _tipoReceita, Usuario _usuarioReceita,
-			Date _dataReceita) {
+	// this constructor will be used for series categoryReceita in lineChart
+	// do not use for persistent
+	public Receita(double _valorReceita, Date dataReceita) {
 		setValorReceita(_valorReceita);
-		setObservacaoReceita(_observacaoReceita);
+		setDataReceita(dataReceita);
+	}
+
+	public Receita(double _valorReceita, TipoReceita _tipoReceita, Usuario _usuarioReceita, Date dataReceita) {
+		setValorReceita(_valorReceita);
 		setTipoReceita(_tipoReceita);
 		setUsuarioReceita(_usuarioReceita);
-		setDataReceita(_dataReceita);
+		setDataReceita(dataReceita);
+	}
+
+	public Receita(double _valorReceita, TipoReceita _tipoReceita, Usuario _usuarioReceita, Date dataReceita,
+			String _descricaoReceita) {
+		setValorReceita(_valorReceita);
+		setTipoReceita(_tipoReceita);
+		setUsuarioReceita(_usuarioReceita);
+		setDataReceita(dataReceita);
+		setDescricaoReceita(_descricaoReceita);
 	}
 
 	public Date getDataReceita() {
@@ -73,11 +92,11 @@ public class Receita {
 		this.valorReceita = valorReceita;
 	}
 
-	public String getObservacaoReceita() {
+	public String getDescricaoReceita() {
 		return descricaoReceita;
 	}
 
-	public void setObservacaoReceita(String observacaoReceita) {
+	public void setDescricaoReceita(String observacaoReceita) {
 		this.descricaoReceita = observacaoReceita;
 	}
 
