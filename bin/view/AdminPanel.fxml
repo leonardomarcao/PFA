@@ -14,125 +14,132 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="801.0" prefWidth="1291.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AdminPanelController">
-    <children>
-      <StackPane prefHeight="801.0" prefWidth="1291.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <HBox prefHeight="744.0" prefWidth="1291.0">
-               <children>
-                  <VBox prefHeight="801.0" prefWidth="268.0" stylesheets="@../../resources/css/AdminPanel/style.css">
-                     <children>
-                        <Pane prefHeight="147.0" prefWidth="100.0" style="-fx-background-color: #2980b9;">
-                           <children>
-                              <ImageView fitHeight="124.0" fitWidth="132.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../resources/assets/Logotype/bank.png" />
-                                 </image>
-                              </ImageView>
-                              <Label layoutX="126.0" prefHeight="109.0" prefWidth="135.0" text="PFA" textFill="WHITE">
-                                 <font>
-                                    <Font name="Roboto Bold" size="61.0" />
-                                 </font>
-                              </Label>
-                              <Label layoutX="84.0" layoutY="105.0" prefHeight="39.0" prefWidth="183.0" text="Admin Panel" textFill="WHITE">
-                                 <font>
-                                    <Font name="Roboto" size="32.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </Pane>
-                        <Pane prefHeight="666.0" prefWidth="261.0" style="-fx-background-color: #2c3e50;">
-                           <children>
-                              <HBox fx:id="btnDashboard" alignment="CENTER_LEFT" onMouseClicked="#btnDashboardOnMouseClick" prefHeight="54.0" prefWidth="268.0" styleClass="btns">
-                                 <children>
-                                    <FontAwesomeIconView fill="#bdc3c7" glyphName="DASHBOARD" size="16">
-                                       <HBox.margin>
-                                          <Insets left="15.0" />
-                                       </HBox.margin>
-                                    </FontAwesomeIconView>
-                                    <Label text="Dashboard" textFill="WHITE">
-                                       <HBox.margin>
-                                          <Insets left="10.0" />
-                                       </HBox.margin>
-                                       <font>
-                                          <Font name="Roboto" size="24.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </HBox>
-                              <HBox fx:id="btnReceita" alignment="CENTER_LEFT" layoutY="108.0" onMouseClicked="#btnReceitaOnMouseClick" prefHeight="54.0" prefWidth="268.0" styleClass="btns">
-                                 <children>
-                                    <FontAwesomeIconView fill="#bdc3c7" glyphName="MONEY" size="16">
-                                       <HBox.margin>
-                                          <Insets left="15.0" />
-                                       </HBox.margin>
-                                    </FontAwesomeIconView>
-                                    <Label text="Receitas" textFill="WHITE">
-                                       <HBox.margin>
-                                          <Insets left="10.0" />
-                                       </HBox.margin>
-                                       <font>
-                                          <Font name="Roboto" size="24.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </HBox>
-                              <HBox fx:id="btnDespesa" alignment="CENTER_LEFT" layoutY="54.0" onMouseClicked="#btnDespesaOnMouseClick" prefHeight="54.0" prefWidth="268.0" styleClass="btns">
-                                 <children>
-                                    <FontAwesomeIconView fill="#bdc3c7" glyphName="CALCULATOR" size="16">
-                                       <HBox.margin>
-                                          <Insets left="15.0" />
-                                       </HBox.margin>
-                                    </FontAwesomeIconView>
-                                    <Label text="Despesas" textFill="WHITE">
-                                       <HBox.margin>
-                                          <Insets left="10.0" />
-                                       </HBox.margin>
-                                       <font>
-                                          <Font name="Roboto" size="24.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </HBox>
-                              <HBox fx:id="btnRelatorio" alignment="CENTER_LEFT" layoutY="162.0" onMouseClicked="#btnRelatorioOnMouseClick" prefHeight="54.0" prefWidth="268.0" styleClass="btns">
-                                 <children>
-                                    <FontAwesomeIconView fill="#bdc3c7" glyphName="PRINT" size="16">
-                                       <HBox.margin>
-                                          <Insets left="15.0" />
-                                       </HBox.margin>
-                                    </FontAwesomeIconView>
-                                    <Label text="Relatórios" textFill="WHITE">
-                                       <HBox.margin>
-                                          <Insets left="10.0" />
-                                       </HBox.margin>
-                                       <font>
-                                          <Font name="Roboto" size="24.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </HBox>
-                           </children>
-                        </Pane>
-                     </children>
-                  </VBox>
-                  <BorderPane fx:id="borderPaneMain" prefHeight="801.0" prefWidth="1023.0" />
-               </children>
-            </HBox>
-         </children>
-      </StackPane>
-      
-    </children>
-    
-</AnchorPane>
+<BorderPane prefHeight="801.0" prefWidth="1207.0"
+	xmlns="http://javafx.com/javafx/10.0.1"
+	xmlns:fx="http://javafx.com/fxml/1">
+	<center>
+		<StackPane alignment="TOP_CENTER" prefHeight="801.0"
+			prefWidth="1291.0" BorderPane.alignment="CENTER">
+			<children>
+				<HBox alignment="CENTER" prefHeight="744.0" prefWidth="1291.0">
+					<children>
+						<AnchorPane prefHeight="200.0" prefWidth="200.0">
+							<children>
+								<VBox alignment="CENTER" prefHeight="801.0"
+									prefWidth="268.0"
+									stylesheets="@../../resources/css/AdminPanel/style.css">
+									<children>
+										<Pane style="-fx-background-color: #2980b9;"
+											VBox.vgrow="ALWAYS">
+											<children>
+												<ImageView fitHeight="124.0" fitWidth="132.0"
+													pickOnBounds="true" preserveRatio="true">
+													<image>
+														<Image
+															url="@../../resources/assets/Logotype/bank.png" />
+													</image>
+												</ImageView>
+												<Label layoutX="126.0" prefHeight="109.0"
+													prefWidth="135.0" text="PFA" textFill="WHITE">
+													<font>
+														<Font name="Roboto Bold" size="61.0" />
+													</font>
+												</Label>
+												<Label alignment="BOTTOM_RIGHT" layoutX="84.0"
+													layoutY="105.0" prefHeight="39.0" prefWidth="183.0"
+													text="Admin Panel" textFill="WHITE">
+													<font>
+														<Font name="Roboto" size="32.0" />
+													</font>
+												</Label>
+											</children>
+										</Pane>
+										<Pane prefHeight="655.0"
+											style="-fx-background-color: #2c3e50;" VBox.vgrow="ALWAYS">
+											<children>
+												<HBox fx:id="btnDashboard" alignment="CENTER_LEFT"
+													onMouseClicked="#btnDashboardOnMouseClick"
+													prefHeight="54.0" prefWidth="268.0" styleClass="btns">
+													<children>
+														<FontAwesomeIconView fill="#bdc3c7"
+															glyphName="DASHBOARD" size="16">
+															<HBox.margin>
+																<Insets left="15.0" />
+															</HBox.margin>
+														</FontAwesomeIconView>
+														<Label text="Dashboard" textFill="WHITE">
+															<HBox.margin>
+																<Insets left="10.0" />
+															</HBox.margin>
+															<font>
+																<Font name="Roboto" size="24.0" />
+															</font>
+														</Label>
+													</children>
+													<cursor>
+														<Cursor fx:constant="HAND" />
+													</cursor>
+												</HBox>
+												<HBox fx:id="btnReceita" alignment="CENTER_LEFT"
+													layoutY="108.0" onMouseClicked="#btnReceitaOnMouseClick"
+													prefHeight="54.0" prefWidth="268.0" styleClass="btns">
+													<children>
+														<FontAwesomeIconView fill="#bdc3c7"
+															glyphName="MONEY" size="16">
+															<HBox.margin>
+																<Insets left="15.0" />
+															</HBox.margin>
+														</FontAwesomeIconView>
+														<Label text="Receitas" textFill="WHITE">
+															<HBox.margin>
+																<Insets left="10.0" />
+															</HBox.margin>
+															<font>
+																<Font name="Roboto" size="24.0" />
+															</font>
+														</Label>
+													</children>
+													<cursor>
+														<Cursor fx:constant="HAND" />
+													</cursor>
+												</HBox>
+												<HBox fx:id="btnDespesa" alignment="CENTER_LEFT"
+													layoutY="54.0" onMouseClicked="#btnDespesaOnMouseClick"
+													prefHeight="54.0" prefWidth="268.0" styleClass="btns">
+													<children>
+														<FontAwesomeIconView fill="#bdc3c7"
+															glyphName="CALCULATOR" size="16">
+															<HBox.margin>
+																<Insets left="15.0" />
+															</HBox.margin>
+														</FontAwesomeIconView>
+														<Label text="Despesas" textFill="WHITE">
+															<HBox.margin>
+																<Insets left="10.0" />
+															</HBox.margin>
+															<font>
+																<Font name="Roboto" size="24.0" />
+															</font>
+														</Label>
+													</children>
+													<cursor>
+														<Cursor fx:constant="HAND" />
+													</cursor>
+												</HBox>
+											</children>
+										</Pane>
+									</children>
+								</VBox>
+							</children>
+						</AnchorPane>
+						<AnchorPane HBox.hgrow="ALWAYS">
+							<children>
+								<BorderPane fx:id="borderPaneMain" />
+							</children>
+						</AnchorPane>
+					</children>
+				</HBox>
+			</children>
+		</StackPane>
+	</center>
+</BorderPane>

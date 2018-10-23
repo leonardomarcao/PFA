@@ -192,7 +192,7 @@ public class ReceitaController implements Initializable {
 		stage.setScene(scene);
 		stage.resizableProperty().set(false);
 		stage.initStyle(StageStyle.DECORATED);
-		stage.setTitle("PFA - CADASTRO DE RECEITAS");
+		stage.setTitle("PFA - CADASTRO DE DESPESA");
 		stage.initModality(Modality.APPLICATION_MODAL);
 		stage.showAndWait();
 	}

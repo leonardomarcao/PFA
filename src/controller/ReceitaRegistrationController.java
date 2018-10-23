@@ -36,6 +36,8 @@ public class ReceitaRegistrationController implements Initializable {
 	private Receita receita;
 
 	private Usuario usuario;
+	
+	private TipoReceita tipoReceita;
 
 	@FXML
 	private JFXTextField edtValorReceita;
@@ -66,15 +68,17 @@ public class ReceitaRegistrationController implements Initializable {
 		super();
 		setUsuario(_usuario);
 		setReceita(_receita);
+		setTipoReceita(getReceita().getTipoReceita());
 		setTableViewReceita(_tableViewReceita);
 	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		System.out.println("test");
 		if (getReceita() != null) {
 			edtValorReceita.setText(String.valueOf((getReceita().getValorReceita())));
 			loadCxTipoReceita();
-			setTipoReceitaFromCx(null);
+			if (getReceita() != null) setTipoReceitaFromCx(getReceita().getTipoReceita());
 			edtDescricaoReceita.setText(getReceita().getDescricaoReceita());
 			edtDataReceita
 					.setValue(getReceita().getDataReceita().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
@@ -120,19 +124,30 @@ public class ReceitaRegistrationController implements Initializable {
 	public void setSetTipoReceita(Set<String> setTipoReceita) {
 		this.setTipoReceita = setTipoReceita;
 	}
+	
+	public TipoReceita getTipoReceita() {
+		return tipoReceita;
+	}
+
+	public void setTipoReceita(TipoReceita tipoReceita) {
+		this.tipoReceita = tipoReceita;
+	}
 
 	@FXML
 	void addTipoReceita(MouseEvent event) {
-		TipoReceita tipoReceita = inputDialogTipoReceita();
-		if (tipoReceita != null) {
-			cxTipoReceita.getItems().clear();
-			loadCxTipoReceita();
-			setTipoReceitaFromCx(tipoReceita);
-		} else {
-			cxTipoReceita.getItems().clear();
-			loadCxTipoReceita();
-			setTipoReceitaFromCx(null);
-		}
+		String nomeTipoReceita = inputDialogTipoReceita();
+		TipoReceita tipoReceita = new TipoReceita(nomeTipoReceita);
+		TipoReceitaDAO tipoReceitaDAO = new TipoReceitaDAO();
+		if (!tipoReceitaDAO.verifyExistsTipoReceita(nomeTipoReceita)) {					
+			tipoReceitaDAO.saveTipoReceita(tipoReceita);
+			if (tipoReceita != null) {
+				cxTipoReceita.getItems().clear();
+				loadCxTipoReceita();
+				setTipoReceitaFromCx(tipoReceita);
+			}
+		}else
+			alertDialog("Atenção", "Duplicidade de dados!", "Já existe um tipo de receita "
+				   	  + "com o mesmo nome cadastrado! Por favor, tente com outro nome.", AlertType.ERROR);
 	}
 
 	@FXML
@@ -171,17 +186,14 @@ public class ReceitaRegistrationController implements Initializable {
 		}
 	}
 
-	private TipoReceita inputDialogTipoReceita() {
+	private String inputDialogTipoReceita() {
 		TextInputDialog dialog = new TextInputDialog();
 		dialog.setTitle("Cadastro de Tipo de Receita");
 		dialog.setHeaderText("Por favor, informe um nome para o tipo de receita");
 		dialog.setContentText("Tipo de receita: ");
 		Optional<String> result = dialog.showAndWait();
 		if (result.isPresent() && !result.get().isEmpty()) {
-			TipoReceita tipoReceita = new TipoReceita(result.get());
-			TipoReceitaDAO tipoReceitaDAO = new TipoReceitaDAO();
-			tipoReceitaDAO.saveTipoReceita(tipoReceita);
-			return tipoReceita;
+			return result.get();					
 		} else if (result.isPresent() && result.get().isEmpty())
 			alertDialog("Cadastro de tipo de receita", "Atenção!", "Nome do tipo de receita não pode ser nulo.",
 					AlertType.ERROR);
@@ -196,7 +208,7 @@ public class ReceitaRegistrationController implements Initializable {
 
 	@FXML
 	void onMouseClickedCxTipoReceita(MouseEvent event) {
-		if (mapTipoReceita == null)
+		if (mapTipoReceita == null) 
 			loadCxTipoReceita();
 	}
 
@@ -206,37 +218,20 @@ public class ReceitaRegistrationController implements Initializable {
 	}
 
 	private void setTipoReceitaFromCx(TipoReceita tipoReceita) {
-		if (tipoReceita == null)
-			cxTipoReceita.getSelectionModel().select(getReceita().getTipoReceita().getNomeTipoReceita());
-		else
 			cxTipoReceita.getSelectionModel().select(tipoReceita.getNomeTipoReceita());
 	}
 
 	private void loadCxTipoReceita() {
 		List<TipoReceita> listTipoReceita = new TipoReceitaDAO().getAllTipoReceita();
 		if (listTipoReceita.isEmpty()) {
-			alertDialogTipoReceitaEmpty();
+			alertDialog("Atenção!", "Não há nenhum tipo de receita cadastrado!", 
+					"Por favor, é necessário o cadastro de um \n" + "tipo de receita para vincular a receita", AlertType.WARNING);
 		} else {
 			setMapTipoReceita((listTipoReceita.stream().sorted(Comparator.comparing(TipoReceita::getNomeTipoReceita))
 					.collect(Collectors.toMap(TipoReceita::getNomeTipoReceita, Function.identity()))));
 			setSetTipoReceita(getMapTipoReceita().keySet());
 			setTipoReceita.forEach(allTipoReceita -> cxTipoReceita.getItems().add(allTipoReceita));
-		}
-	}
-
-	private void alertDialogTipoReceitaEmpty() {
-		ButtonType buttonYes = new ButtonType("Sim");
-		ButtonType buttonNo = new ButtonType("Não");
-		Alert alert = new Alert(AlertType.WARNING);
-		alert.setTitle("Tipo de Receita");
-		alert.setHeaderText("Não há nenhum tipo de receita cadastrado!");
-		alert.setContentText("Por favor, é necessário o cadastro de um \n" + "tipo de receita para vincular a receita");
-		alert.getButtonTypes().setAll(buttonYes, buttonNo);
-		Optional<ButtonType> result = alert.showAndWait();
-		if (result.get() == buttonYes) {
-			inputDialogTipoReceita();
-		} else if (result.get() == buttonNo) {
-			alert.close();
+			cxTipoReceita.autosize();
 		}
 	}
 

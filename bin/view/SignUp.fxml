@@ -14,106 +14,172 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="431.0" prefWidth="823.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SignUpController">
-   <children>
-      <StackPane alignment="BOTTOM_CENTER" prefHeight="431.0" prefWidth="823.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <BorderPane prefHeight="200.0" prefWidth="200.0">
-               <left>
-                  <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ecf0f1;" BorderPane.alignment="CENTER" />
-               </left>
-               <center>
-                  <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: WHITE;" BorderPane.alignment="CENTER" />
-               </center>
-            </BorderPane>
-            <AnchorPane prefHeight="420.0" prefWidth="832.0" style="-fx-background-color: transparent;">
-               <children>
-                  <ImageView fitHeight="44.0" fitWidth="45.0" layoutX="14.0" layoutY="374.0" onMouseClicked="#backLogin" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../resources/assets/SignUp/back.png" />
-                     </image>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </ImageView>
-                  <AnchorPane layoutX="213.0" layoutY="41.0" prefHeight="372.0" prefWidth="266.0" style="-fx-background-color: WHITE; -fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5);">
-                     <children>
-                        <JFXTextField fx:id="jTextFieldNomeUsuario" labelFloat="true" layoutX="17.0" layoutY="16.0" prefHeight="25.0" prefWidth="201.0" promptText="Nome de Usuário">
-                           <font>
-                              <Font name="Roboto Light" size="12.0" />
-                           </font></JFXTextField>
-                        <JFXTextField fx:id="jTextFieldCPFUsuario" labelFloat="true" layoutX="16.0" layoutY="66.0" prefHeight="25.0" prefWidth="201.0" promptText="CPF">
-                           <font>
-                              <Font name="Roboto Light" size="12.0" />
-                           </font></JFXTextField>
-                        <JFXTextField fx:id="jTextFieldEmailUsuario" labelFloat="true" layoutX="17.0" layoutY="122.0" prefHeight="25.0" prefWidth="201.0" promptText="E-mail">
-                           <font>
-                              <Font name="Roboto Light" size="12.0" />
-                           </font></JFXTextField>
-                        <JFXPasswordField fx:id="jTextFieldSenhaUsuario" layoutX="16.0" layoutY="173.0" prefHeight="25.0" prefWidth="201.0" promptText="Senha">
-                           <font>
-                              <Font name="Roboto Light" size="12.0" />
-                           </font></JFXPasswordField>
-                        <JFXPasswordField fx:id="jTextFielSenhaVerifyUsuario" layoutX="16.0" layoutY="222.0" prefHeight="25.0" prefWidth="201.0" promptText="Digite novamente a senha">
-                           <font>
-                              <Font name="Roboto Light" size="12.0" />
-                           </font></JFXPasswordField>
-                        <JFXTextField fx:id="jTextFieldDiaUtilSalarioUsuario" labelFloat="true" layoutX="16.0" layoutY="269.0" prefHeight="25.0" prefWidth="201.0" promptText="Dia últil salário">
-                           <font>
-                              <Font name="Roboto Light" size="12.0" />
-                           </font></JFXTextField>
-                        <JFXTextField fx:id="jTextFieldSaldoInicialUsuario" labelFloat="true" layoutX="16.0" layoutY="318.0" prefHeight="25.0" prefWidth="201.0" promptText="Saldo inicial">
-                           <font>
-                              <Font name="Roboto Light" size="12.0" />
-                           </font></JFXTextField>
-                     </children>
-                  </AnchorPane>
-                  <AnchorPane layoutX="491.0" layoutY="41.0" prefHeight="314.0" prefWidth="303.0" style="-fx-background-color: WHITE; -fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5);">
-                     <children>
-                        <JFXTextField fx:id="jTextFieldRuaEndereco" labelFloat="true" layoutX="14.0" layoutY="15.0" prefHeight="25.0" prefWidth="201.0" promptText="Rua">
-                           <font>
-                              <Font name="Roboto Light" size="12.0" />
-                           </font></JFXTextField>
-                        <JFXTextField fx:id="jTextFieldNumeroEndereco" labelFloat="true" layoutX="232.0" layoutY="16.0" prefHeight="25.0" prefWidth="60.0" promptText="Número">
-                           <font>
-                              <Font name="Roboto Light" size="12.0" />
-                           </font></JFXTextField>
-                        <JFXTextField fx:id="jTextFieldBairroEndereco" labelFloat="true" layoutX="14.0" layoutY="67.0" prefHeight="25.0" prefWidth="201.0" promptText="Bairro">
-                           <font>
-                              <Font name="Roboto Light" size="12.0" />
-                           </font></JFXTextField>
-                        <JFXTextField fx:id="jTextFieldCEPEndereco" labelFloat="true" layoutX="14.0" layoutY="121.0" prefHeight="25.0" prefWidth="201.0" promptText="CEP">
-                           <font>
-                              <Font name="Roboto Light" size="12.0" />
-                           </font></JFXTextField>
-                        <JFXTextField labelFloat="true" layoutX="14.0" layoutY="171.0" prefHeight="25.0" prefWidth="201.0" promptText="Complemento">
-                           <font>
-                              <Font name="Roboto Light" size="12.0" />
-                           </font></JFXTextField>
-                     </children>
-                  </AnchorPane>
-                  <Text fill="#2c3e50" layoutX="2.0" layoutY="189.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cadastro de&#10;Usuário" textAlignment="CENTER" wrappingWidth="201.0000104084611">
-                     <font>
-                        <Font name="Roboto Bold" size="23.0" />
-                     </font>
-                  </Text>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="28.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../resources/assets/SignUp/signUp.png" />
-                     </image>
-                  </ImageView>
-                  <JFXButton buttonType="RAISED" layoutX="492.0" layoutY="380.0" onAction="#signUp" prefHeight="33.0" prefWidth="303.0" style="-fx-background-color: #3498db;" text="Cadastrar" textFill="WHITE">
-                     <font>
-                        <Font name="Roboto Bold" size="15.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </JFXButton>
-                  <Label fx:id="lblErrorSignUp" layoutX="493.0" layoutY="361.0" prefHeight="17.0" prefWidth="303.0" textFill="RED" />
-               </children>
-            </AnchorPane>
-         </children>
-      </StackPane>
-   </children>
+<AnchorPane prefHeight="431.0" prefWidth="823.0"
+	xmlns="http://javafx.com/javafx/10.0.1"
+	xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="controller.SignUpController">
+	<children>
+		<StackPane alignment="BOTTOM_CENTER" prefHeight="431.0"
+			prefWidth="823.0" AnchorPane.bottomAnchor="0.0"
+			AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+			AnchorPane.topAnchor="0.0">
+			<children>
+				<BorderPane prefHeight="200.0" prefWidth="200.0">
+					<left>
+						<Pane prefHeight="200.0" prefWidth="200.0"
+							style="-fx-background-color: #ecf0f1;"
+							BorderPane.alignment="CENTER" />
+					</left>
+					<center>
+						<Pane prefHeight="200.0" prefWidth="200.0"
+							style="-fx-background-color: WHITE;"
+							BorderPane.alignment="CENTER" />
+					</center>
+				</BorderPane>
+				<AnchorPane prefHeight="420.0" prefWidth="832.0"
+					style="-fx-background-color: transparent;">
+					<children>
+						<ImageView fitHeight="44.0" fitWidth="45.0"
+							layoutX="14.0" layoutY="374.0" onMouseClicked="#backLogin"
+							pickOnBounds="true" preserveRatio="true">
+							<image>
+								<Image url="@../../resources/assets/SignUp/back.png" />
+							</image>
+							<cursor>
+								<Cursor fx:constant="HAND" />
+							</cursor>
+						</ImageView>
+						<AnchorPane layoutX="213.0" layoutY="41.0"
+							prefHeight="372.0" prefWidth="266.0"
+							style="-fx-background-color: WHITE; -fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5);">
+							<children>
+								<JFXTextField fx:id="jTextFieldNomeUsuario"
+									labelFloat="true" layoutX="17.0" layoutY="16.0"
+									prefHeight="25.0" prefWidth="201.0"
+									promptText="Nome de Usuário">
+									<font>
+										<Font name="Roboto Light" size="12.0" />
+									</font>
+								</JFXTextField>
+								<JFXTextField fx:id="jTextFieldCPFUsuario"
+									labelFloat="true" layoutX="16.0" layoutY="66.0"
+									prefHeight="25.0" prefWidth="201.0" promptText="CPF">
+									<font>
+										<Font name="Roboto Light" size="12.0" />
+									</font>
+								</JFXTextField>
+								<JFXTextField fx:id="jTextFieldEmailUsuario"
+									labelFloat="true" layoutX="17.0" layoutY="122.0"
+									prefHeight="25.0" prefWidth="201.0" promptText="E-mail">
+									<font>
+										<Font name="Roboto Light" size="12.0" />
+									</font>
+								</JFXTextField>
+								<JFXPasswordField
+									fx:id="jTextFieldSenhaUsuario" layoutX="16.0" layoutY="173.0"
+									prefHeight="25.0" prefWidth="201.0" promptText="Senha">
+									<font>
+										<Font name="Roboto Light" size="12.0" />
+									</font>
+								</JFXPasswordField>
+								<JFXPasswordField
+									fx:id="jTextFielSenhaVerifyUsuario" layoutX="16.0"
+									layoutY="222.0" prefHeight="25.0" prefWidth="201.0"
+									promptText="Digite novamente a senha">
+									<font>
+										<Font name="Roboto Light" size="12.0" />
+									</font>
+								</JFXPasswordField>
+								<JFXTextField
+									fx:id="jTextFieldDiaUtilSalarioUsuario" labelFloat="true"
+									layoutX="16.0" layoutY="269.0" prefHeight="25.0"
+									prefWidth="201.0" promptText="Dia últil salário">
+									<font>
+										<Font name="Roboto Light" size="12.0" />
+									</font>
+								</JFXTextField>
+								<JFXTextField fx:id="jTextFieldSaldoInicialUsuario"
+									labelFloat="true" layoutX="16.0" layoutY="318.0"
+									prefHeight="25.0" prefWidth="201.0" promptText="Saldo inicial">
+									<font>
+										<Font name="Roboto Light" size="12.0" />
+									</font>
+								</JFXTextField>
+							</children>
+						</AnchorPane>
+						<AnchorPane layoutX="491.0" layoutY="41.0"
+							prefHeight="314.0" prefWidth="303.0"
+							style="-fx-background-color: WHITE; -fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5);">
+							<children>
+								<JFXTextField fx:id="jTextFieldRuaEndereco"
+									labelFloat="true" layoutX="14.0" layoutY="15.0"
+									prefHeight="25.0" prefWidth="201.0" promptText="Rua">
+									<font>
+										<Font name="Roboto Light" size="12.0" />
+									</font>
+								</JFXTextField>
+								<JFXTextField fx:id="jTextFieldNumeroEndereco"
+									labelFloat="true" layoutX="232.0" layoutY="16.0"
+									prefHeight="25.0" prefWidth="60.0" promptText="Número">
+									<font>
+										<Font name="Roboto Light" size="12.0" />
+									</font>
+								</JFXTextField>
+								<JFXTextField fx:id="jTextFieldBairroEndereco"
+									labelFloat="true" layoutX="14.0" layoutY="67.0"
+									prefHeight="25.0" prefWidth="201.0" promptText="Bairro">
+									<font>
+										<Font name="Roboto Light" size="12.0" />
+									</font>
+								</JFXTextField>
+								<JFXTextField fx:id="jTextFieldCEPEndereco"
+									labelFloat="true" layoutX="14.0" layoutY="121.0"
+									prefHeight="25.0" prefWidth="201.0" promptText="CEP">
+									<font>
+										<Font name="Roboto Light" size="12.0" />
+									</font>
+								</JFXTextField>
+								<JFXTextField labelFloat="true" layoutX="14.0"
+									layoutY="171.0" prefHeight="25.0" prefWidth="201.0"
+									promptText="Complemento">
+									<font>
+										<Font name="Roboto Light" size="12.0" />
+									</font>
+								</JFXTextField>
+							</children>
+						</AnchorPane>
+						<Text fill="#2c3e50" layoutX="2.0" layoutY="189.0"
+							strokeType="OUTSIDE" strokeWidth="0.0"
+							text="Cadastro de&#10;Usuário" textAlignment="CENTER"
+							wrappingWidth="201.0000104084611">
+							<font>
+								<Font name="Roboto Bold" size="23.0" />
+							</font>
+						</Text>
+						<ImageView fitHeight="150.0" fitWidth="200.0"
+							layoutX="28.0" layoutY="14.0" pickOnBounds="true"
+							preserveRatio="true">
+							<image>
+								<Image url="@../../resources/assets/SignUp/signUp.png" />
+							</image>
+						</ImageView>
+						<JFXButton buttonType="RAISED" layoutX="492.0"
+							layoutY="380.0" onAction="#signUp" prefHeight="33.0"
+							prefWidth="303.0" style="-fx-background-color: #3498db;"
+							text="Cadastrar" textFill="WHITE">
+							<font>
+								<Font name="Roboto Bold" size="15.0" />
+							</font>
+							<cursor>
+								<Cursor fx:constant="HAND" />
+							</cursor>
+						</JFXButton>
+						<Label fx:id="lblErrorSignUp" layoutX="493.0"
+							layoutY="361.0" prefHeight="17.0" prefWidth="303.0"
+							textFill="RED" />
+					</children>
+				</AnchorPane>
+			</children>
+		</StackPane>
+	</children>
 </AnchorPane>

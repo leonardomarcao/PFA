@@ -26,6 +26,24 @@ public class TipoReceitaDAO {
 			session.close();
 		}
 	}
+	
+	public boolean verifyExistsTipoReceita(String _nomeTipoReceita) {
+		Session session = sessionFactory.getCurrentSession();
+		try {
+			session.getTransaction().begin();
+			TipoReceita tipoReceita = session.createNamedQuery("TipoReceita.verifyExistsTipoReceita", TipoReceita.class)
+					.setParameter("nomeTipoReceita", _nomeTipoReceita)
+					.uniqueResult();
+			if (tipoReceita != null)
+				return true;
+			else
+				return false;
+		} catch (HibernateException he) {			
+			return false;
+		} finally {
+			session.close();
+		}		
+	}
 
 	public void saveTipoReceita(Object o) {
 		Session session = sessionFactory.getCurrentSession();

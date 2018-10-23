@@ -36,6 +36,8 @@ public class DespesaRegistrationController implements Initializable {
 	private Despesa despesa;
 
 	private Usuario usuario;
+	
+	private TipoDespesa tipoDespesa;
 
 	@FXML
 	private JFXTextField edtValorDespesa;
@@ -66,15 +68,17 @@ public class DespesaRegistrationController implements Initializable {
 		super();
 		setUsuario(_usuario);
 		setDespesa(_despesa);
+		setTipoDespesa(getDespesa().getTipoDespesa());
 		setTableViewDespesa(_tableViewDespesa);
 	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		System.out.println("test");
 		if (getDespesa() != null) {
 			edtValorDespesa.setText(String.valueOf((getDespesa().getValorDespesa())));
 			loadCxTipoDespesa();
-			setTipoDespesaFromCx(null);
+			if (getDespesa() != null) setTipoDespesaFromCx(getDespesa().getTipoDespesa());
 			edtDescricaoDespesa.setText(getDespesa().getDescricaoDespesa());
 			edtDataDespesa
 					.setValue(getDespesa().getDataDespesa().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
@@ -120,19 +124,30 @@ public class DespesaRegistrationController implements Initializable {
 	public void setSetTipoDespesa(Set<String> setTipoDespesa) {
 		this.setTipoDespesa = setTipoDespesa;
 	}
+	
+	public TipoDespesa getTipoDespesa() {
+		return tipoDespesa;
+	}
+
+	public void setTipoDespesa(TipoDespesa tipoDespesa) {
+		this.tipoDespesa = tipoDespesa;
+	}
 
 	@FXML
 	void addTipoDespesa(MouseEvent event) {
-		TipoDespesa tipoDespesa = inputDialogTipoDespesa();
-		if (tipoDespesa != null) {
-			cxTipoDespesa.getItems().clear();
-			loadCxTipoDespesa();
-			setTipoDespesaFromCx(tipoDespesa);
-		} else {
-			cxTipoDespesa.getItems().clear();
-			loadCxTipoDespesa();
-			setTipoDespesaFromCx(null);
-		}
+		String nomeTipoDespesa = inputDialogTipoDespesa();
+		TipoDespesa tipoDespesa = new TipoDespesa(nomeTipoDespesa);
+		TipoDespesaDAO tipoDespesaDAO = new TipoDespesaDAO();
+		if (!tipoDespesaDAO.verifyExistsTipoDespesa(nomeTipoDespesa)) {					
+			tipoDespesaDAO.saveTipoDespesa(tipoDespesa);
+			if (tipoDespesa != null) {
+				cxTipoDespesa.getItems().clear();
+				loadCxTipoDespesa();
+				setTipoDespesaFromCx(tipoDespesa);
+			}
+		}else
+			alertDialog("Atenção", "Duplicidade de dados!", "Já existe um tipo de despesa "
+				   	  + "com o mesmo nome cadastrado! Por favor, tente com outro nome.", AlertType.ERROR);
 	}
 
 	@FXML
@@ -171,17 +186,14 @@ public class DespesaRegistrationController implements Initializable {
 		}
 	}
 
-	private TipoDespesa inputDialogTipoDespesa() {
+	private String inputDialogTipoDespesa() {
 		TextInputDialog dialog = new TextInputDialog();
 		dialog.setTitle("Cadastro de Tipo de Despesa");
 		dialog.setHeaderText("Por favor, informe um nome para o tipo de despesa");
 		dialog.setContentText("Tipo de despesa: ");
 		Optional<String> result = dialog.showAndWait();
 		if (result.isPresent() && !result.get().isEmpty()) {
-			TipoDespesa tipoDespesa = new TipoDespesa(result.get());
-			TipoDespesaDAO tipoDespesaDAO = new TipoDespesaDAO();
-			tipoDespesaDAO.saveTipoDespesa(tipoDespesa);
-			return tipoDespesa;
+			return result.get();					
 		} else if (result.isPresent() && result.get().isEmpty())
 			alertDialog("Cadastro de tipo de despesa", "Atenção!", "Nome do tipo de despesa não pode ser nulo.",
 					AlertType.ERROR);
@@ -196,7 +208,7 @@ public class DespesaRegistrationController implements Initializable {
 
 	@FXML
 	void onMouseClickedCxTipoDespesa(MouseEvent event) {
-		if (mapTipoDespesa == null)
+		if (mapTipoDespesa == null) 
 			loadCxTipoDespesa();
 	}
 
@@ -206,37 +218,20 @@ public class DespesaRegistrationController implements Initializable {
 	}
 
 	private void setTipoDespesaFromCx(TipoDespesa tipoDespesa) {
-		if (tipoDespesa == null)
-			cxTipoDespesa.getSelectionModel().select(getDespesa().getTipoDespesa().getNomeTipoDespesa());
-		else
 			cxTipoDespesa.getSelectionModel().select(tipoDespesa.getNomeTipoDespesa());
 	}
 
 	private void loadCxTipoDespesa() {
 		List<TipoDespesa> listTipoDespesa = new TipoDespesaDAO().getAllTipoDespesa();
 		if (listTipoDespesa.isEmpty()) {
-			alertDialogTipoDespesaEmpty();
+			alertDialog("Atenção!", "Não há nenhum tipo de despesa cadastrado!", 
+					"Por favor, é necessário o cadastro de um \n" + "tipo de despesa para vincular a despesa", AlertType.WARNING);
 		} else {
 			setMapTipoDespesa((listTipoDespesa.stream().sorted(Comparator.comparing(TipoDespesa::getNomeTipoDespesa))
 					.collect(Collectors.toMap(TipoDespesa::getNomeTipoDespesa, Function.identity()))));
 			setSetTipoDespesa(getMapTipoDespesa().keySet());
 			setTipoDespesa.forEach(allTipoDespesa -> cxTipoDespesa.getItems().add(allTipoDespesa));
-		}
-	}
-
-	private void alertDialogTipoDespesaEmpty() {
-		ButtonType buttonYes = new ButtonType("Sim");
-		ButtonType buttonNo = new ButtonType("Não");
-		Alert alert = new Alert(AlertType.WARNING);
-		alert.setTitle("Tipo de Despesa");
-		alert.setHeaderText("Não há nenhum tipo de despesa cadastrado!");
-		alert.setContentText("Por favor, é necessário o cadastro de um \n" + "tipo de despesa para vincular a despesa");
-		alert.getButtonTypes().setAll(buttonYes, buttonNo);
-		Optional<ButtonType> result = alert.showAndWait();
-		if (result.get() == buttonYes) {
-			inputDialogTipoDespesa();
-		} else if (result.get() == buttonNo) {
-			alert.close();
+			cxTipoDespesa.autosize();
 		}
 	}
 

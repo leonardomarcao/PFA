@@ -101,7 +101,8 @@ public class DashBoardController implements Initializable {
 		Double totalDespesaUltimosTrintaDias = 0.0;
 		for (Despesa despesa : listDespesa)
 			// considerar data de início
-			if (despesa.getDataDespesa().after(Date.valueOf(thirty.plusDays(-1))))
+			if (despesa.getDataDespesa().after(Date.valueOf(thirty.plusDays(-1))) &&
+				despesa.getDataDespesa().before((Date.valueOf(now.plusDays(1)))))
 				totalDespesaUltimosTrintaDias += despesa.getValorDespesa();
 		lblMonthAmountDespesa.setText(String.valueOf(String.format("R$ %.2f", (totalDespesaUltimosTrintaDias))));
 		lblPeriodoDespesa.setText(thirty.format(formatter) + " à " + now.format(formatter));
@@ -116,8 +117,8 @@ public class DashBoardController implements Initializable {
 		Double totalReceitaUltimosTrintaDias = 0.0;
 		for (Receita receita : listReceita)
 			// considerar data de início
-			if (receita.getDataReceita().after(Date.valueOf(thirty.plusDays(-1))))
-				totalReceitaUltimosTrintaDias += receita.getValorReceita();
+			if (receita.getDataReceita().after(Date.valueOf(thirty.plusDays(-1))) &&
+					receita.getDataReceita().before((Date.valueOf(now.plusDays(1)))))
 		lblMonthAmountReceita.setText(String.valueOf(String.format("R$ %.2f", (totalReceitaUltimosTrintaDias))));
 		lblPeriodoReceita.setText(thirty.format(formatter) + " à " + now.format(formatter));
 	}

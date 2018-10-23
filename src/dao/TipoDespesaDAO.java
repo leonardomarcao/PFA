@@ -28,6 +28,24 @@ public class TipoDespesaDAO {
 			session.close();
 		}
 	}
+	
+	public boolean verifyExistsTipoDespesa(String _nomeTipoDespesa) {
+		Session session = sessionFactory.getCurrentSession();
+		try {
+			session.getTransaction().begin();
+			TipoDespesa tipoDespesa = session.createNamedQuery("TipoDespesa.verifyExistsTipoDespesa", TipoDespesa.class)
+					.setParameter("nomeTipoDespesa", _nomeTipoDespesa)
+					.uniqueResult();
+			if (tipoDespesa != null)
+				return true;
+			else
+				return false;
+		} catch (HibernateException he) {			
+			return false;
+		} finally {
+			session.close();
+		}		
+	}
 
 	public void saveTipoDespesa(Object o) {
 		Session session = sessionFactory.getCurrentSession();

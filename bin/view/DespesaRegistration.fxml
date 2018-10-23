@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.effect.Reflection?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="355.0" prefWidth="636.0"
+	xmlns="http://javafx.com/javafx/10.0.1"
+	xmlns:fx="http://javafx.com/fxml/1">
+	<children>
+		<StackPane alignment="BOTTOM_CENTER" layoutY="9.0"
+			prefHeight="431.0" prefWidth="670.0" AnchorPane.bottomAnchor="0.0"
+			AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+			AnchorPane.topAnchor="0.0">
+			<children>
+				<BorderPane prefHeight="431.0" prefWidth="744.0">
+					<left>
+						<Pane prefHeight="200.0" prefWidth="200.0"
+							style="-fx-background-color: #ecf0f1;"
+							BorderPane.alignment="CENTER" />
+					</left>
+					<center>
+						<Pane prefHeight="200.0" prefWidth="200.0"
+							style="-fx-background-color: WHITE;"
+							BorderPane.alignment="CENTER" />
+					</center>
+				</BorderPane>
+				<AnchorPane prefHeight="431.0" prefWidth="611.0"
+					style="-fx-background-color: transparent;"
+					stylesheets="@../../resources/css/despesaregistration/style.css">
+					<children>
+						<AnchorPane layoutX="216.0" layoutY="41.0"
+							prefHeight="246.0" prefWidth="399.0"
+							style="-fx-background-color: WHITE; -fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5);">
+							<children>
+								<JFXTextField fx:id="edtValorDespesa"
+									labelFloat="true" layoutX="17.0" layoutY="16.0"
+									prefHeight="25.0" prefWidth="201.0"
+									promptText="Valor da despesa">
+									<font>
+										<Font name="Roboto Light" size="12.0" />
+									</font>
+								</JFXTextField>
+								<JFXComboBox fx:id="cxTipoDespesa" layoutX="17.0"
+									layoutY="68.0" onMouseClicked="#onMouseClickedCxTipoDespesa"
+									prefHeight="25.0" prefWidth="201.0"
+									promptText="Tipo da despesa" />
+								<FontAwesomeIconView glyphName="PLUS_CIRCLE"
+									layoutX="224.0" layoutY="89.0" onMouseClicked="#addTipoDespesa"
+									size="24">
+									<cursor>
+										<Cursor fx:constant="HAND" />
+									</cursor>
+								</FontAwesomeIconView>
+								<JFXTextField fx:id="edtDescricaoDespesa"
+									labelFloat="true" layoutX="14.0" layoutY="123.0"
+									prefHeight="25.0" prefWidth="366.0"
+									promptText="Descrição da despesa">
+									<font>
+										<Font name="Roboto Light" size="12.0" />
+									</font>
+								</JFXTextField>
+								<JFXDatePicker fx:id="edtDataDespesa"
+									defaultColor="#3498db" layoutX="14.0" layoutY="178.0"
+									promptText="Data da despesa" />
+							</children>
+						</AnchorPane>
+						<Text fill="#2c3e50" layoutX="216.0" layoutY="32.0"
+							strokeType="OUTSIDE" strokeWidth="0.0" text="Despesa"
+							wrappingWidth="201.0000104084611">
+							<font>
+								<Font name="Roboto Bold" size="23.0" />
+							</font>
+						</Text>
+						<ImageView fitHeight="150.0" fitWidth="200.0"
+							layoutX="28.0" layoutY="14.0" pickOnBounds="true"
+							preserveRatio="true">
+							<image>
+								<Image url="@../../resources/assets/despesa/cost.png" />
+							</image>
+							<effect>
+								<Reflection fraction="0.86" topOpacity="0.51" />
+							</effect>
+						</ImageView>
+						<JFXButton buttonType="RAISED" layoutX="416.0"
+							layoutY="305.0" onMouseClicked="#saveDespesa" prefHeight="33.0"
+							prefWidth="201.0" style="-fx-background-color: #3498db;"
+							text="Salvar" textFill="WHITE">
+							<font>
+								<Font name="Roboto Bold" size="15.0" />
+							</font>
+							<cursor>
+								<Cursor fx:constant="HAND" />
+							</cursor>
+						</JFXButton>
+						<FontAwesomeIconView glyphName="BACKWARD"
+							layoutX="28.0" layoutY="328.0" onMouseClicked="#backDespesa">
+							<cursor>
+								<Cursor fx:constant="HAND" />
+							</cursor>
+						</FontAwesomeIconView>
+					</children>
+				</AnchorPane>
+			</children>
+		</StackPane>
+	</children>
+</AnchorPane>

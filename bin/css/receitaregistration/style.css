@@ -1,0 +1,14 @@
+.glyph-icon{
+    -fx-text-fill: -icons-color;
+    -fx-fill: -icons-color;
+    -glyph-size: 24px;
+}
+
+.glyph-icon:hover{
+    -fx-effect:  dropshadow(three-pass-box, rgba(0,0,0,0.2), 4, 0, 0, 0);
+    -icons-color: #3498db;			
+}
+
+.glyph-icon:selected{
+    -icons-color: black;			
+}

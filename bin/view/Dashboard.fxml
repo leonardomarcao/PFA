@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
@@ -13,111 +14,174 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="801.0" prefWidth="1037.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <StackPane prefHeight="801.0" prefWidth="1037.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <VBox prefHeight="801.0" prefWidth="1037.0">
-               <children>
-                  <Pane prefHeight="82.0" prefWidth="1037.0" style="-fx-background-color: #ecf0f1;">
-                     <children>
-                        <Separator layoutY="67.0" prefHeight="6.0" prefWidth="1037.0" />
-                        <Label layoutX="68.0" layoutY="12.0" text="DASHBOARD">
-                           <font>
-                              <Font name="Roboto Bold" size="36.0" />
-                           </font>
-                        </Label>
-                        <FontAwesomeIconView glyphName="DASHBOARD" layoutX="23.0" layoutY="45.0" size="32" />
-                     </children>
-                  </Pane>
-                  <AnchorPane prefHeight="743.0" prefWidth="1037.0">
-                     <children>
-                        <Pane layoutX="79.0" layoutY="61.0" prefHeight="152.0" prefWidth="258.0" style="-fx-background-color: #e74c3c;">
-                           <children>
-                              <FontAwesomeIconView fill="WHITE" glyphName="USD" layoutX="20.0" layoutY="94.0" size="46" />
-                              <Separator layoutX="69.0" layoutY="15.0" orientation="VERTICAL" prefHeight="125.0" prefWidth="4.0" />
-                              <Label layoutX="88.0" layoutY="27.0" text="R$ 1500.00" textFill="WHITE">
-                                 <font>
-                                    <Font name="Roboto" size="24.0" />
-                                 </font>
-                              </Label>
-                              <Label layoutX="88.0" layoutY="62.0" text="Saldo Atual" textFill="WHITE">
-                                 <font>
-                                    <Font name="Roboto" size="24.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                           <effect>
-                              <DropShadow />
-                           </effect>
-                        </Pane>
-                        <Label layoutX="22.0" layoutY="14.0" text="Bem vindo, Leonardo.">
-                           <font>
-                              <Font name="Roboto" size="24.0" />
-                           </font>
-                        </Label>
-                        <Pane layoutX="375.0" layoutY="61.0" prefHeight="152.0" prefWidth="270.0" style="-fx-background-color: #2ecc71;">
-                           <children>
-                              <FontAwesomeIconView fill="WHITE" glyphName="CALCULATOR" layoutX="14.0" layoutY="94.0" size="46" />
-                              <Separator layoutX="69.0" layoutY="14.0" orientation="VERTICAL" prefHeight="125.0" prefWidth="4.0" />
-                              <Label layoutX="88.0" layoutY="27.0" text="R$ 500.00" textFill="WHITE">
-                                 <font>
-                                    <Font name="Roboto" size="24.0" />
-                                 </font>
-                              </Label>
-                              <Label layoutX="88.0" layoutY="62.0" text="Total Despesas" textFill="WHITE">
-                                 <font>
-                                    <Font name="Roboto" size="24.0" />
-                                 </font>
-                              </Label>
-                              <Label layoutX="88.0" layoutY="91.0" text="Últimos 30 dias" textFill="WHITE">
-                                 <font>
-                                    <Font name="Roboto" size="16.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                           <effect>
-                              <DropShadow />
-                           </effect>
-                        </Pane>
-                        <Pane layoutX="677.0" layoutY="61.0" prefHeight="152.0" prefWidth="270.0" style="-fx-background-color: #3498db;">
-                           <children>
-                              <FontAwesomeIconView fill="WHITE" glyphName="MONEY" layoutX="10.0" layoutY="94.0" size="46" />
-                              <Separator layoutX="69.0" layoutY="15.0" orientation="VERTICAL" prefHeight="125.0" prefWidth="4.0" />
-                              <Label layoutX="90.0" layoutY="27.0" text="R$ 2000.00" textFill="WHITE">
-                                 <font>
-                                    <Font name="Roboto" size="24.0" />
-                                 </font>
-                              </Label>
-                              <Label layoutX="90.0" layoutY="62.0" text="Total Receitas" textFill="WHITE">
-                                 <font>
-                                    <Font name="Roboto" size="24.0" />
-                                 </font>
-                              </Label>
-                              <Label layoutX="90.0" layoutY="91.0" text="Últimos 30 dias" textFill="WHITE">
-                                 <font>
-                                    <Font name="Roboto" size="16.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                           <effect>
-                              <DropShadow />
-                           </effect>
-                        </Pane>
-                        <LineChart layoutX="22.0" layoutY="266.0" prefHeight="400.0" prefWidth="922.0">
-                          <xAxis>
-                            <CategoryAxis side="BOTTOM" />
-                          </xAxis>
-                          <yAxis>
-                            <NumberAxis side="LEFT" />
-                          </yAxis>
-                        </LineChart>
-                     </children>
-                  </AnchorPane>
-               </children>
-            </VBox>
-         </children>
-      </StackPane>
-   </children>
+<AnchorPane prefHeight="752.0" prefWidth="1037.0"
+	xmlns="http://javafx.com/javafx/10.0.1"
+	xmlns:fx="http://javafx.com/fxml/1">
+	<children>
+		<StackPane prefHeight="801.0" prefWidth="1037.0"
+			AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+			AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+			<children>
+				<AnchorPane prefHeight="767.0" prefWidth="1037.0">
+					<children>
+						<VBox alignment="CENTER" prefHeight="801.0"
+							prefWidth="1037.0">
+							<children>
+								<AnchorPane VBox.vgrow="ALWAYS">
+									<children>
+										<Pane style="-fx-background-color: #ecf0f1;">
+											<children>
+												<Separator layoutY="67.0" prefHeight="6.0"
+													prefWidth="1037.0" valignment="BOTTOM" />
+												<Label layoutX="68.0" layoutY="12.0" text="DASHBOARD">
+													<font>
+														<Font name="Roboto Bold" size="36.0" />
+													</font>
+												</Label>
+												<FontAwesomeIconView
+													glyphName="DASHBOARD" layoutX="23.0" layoutY="45.0"
+													size="32" />
+											</children>
+										</Pane>
+									</children>
+								</AnchorPane>
+								<AnchorPane prefHeight="759.0" prefWidth="1037.0"
+									VBox.vgrow="ALWAYS">
+									<children>
+										<AnchorPane prefHeight="53.0" prefWidth="362.0">
+											<children>
+												<Label fx:id="lblWelcome" prefHeight="53.0"
+													prefWidth="1037.0" text="Bem vindo, Leonardo."
+													AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+													AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+													<font>
+														<Font name="Roboto" size="24.0" />
+													</font>
+													<padding>
+														<Insets left="10.0" />
+													</padding>
+												</Label>
+											</children>
+										</AnchorPane>
+										<AnchorPane prefHeight="200.0" prefWidth="200.0">
+											<children>
+												<Pane layoutX="78.0" layoutY="61.0" prefHeight="152.0"
+													prefWidth="293.0" style="-fx-background-color: #3498db;">
+													<children>
+														<FontAwesomeIconView fill="WHITE"
+															glyphName="USD" layoutX="20.0" layoutY="94.0" size="46" />
+														<Separator layoutX="69.0" layoutY="15.0"
+															orientation="VERTICAL" prefHeight="125.0" prefWidth="4.0" />
+														<Label fx:id="lblSaldoAtual" layoutX="88.0"
+															layoutY="27.0" text="lblSaldoAtual" textFill="WHITE">
+															<font>
+																<Font name="Roboto" size="24.0" />
+															</font>
+														</Label>
+														<Label layoutX="88.0" layoutY="62.0"
+															text="Saldo Atual" textFill="WHITE">
+															<font>
+																<Font name="Roboto" size="24.0" />
+															</font>
+														</Label>
+													</children>
+													<effect>
+														<DropShadow />
+													</effect>
+												</Pane>
+											</children>
+										</AnchorPane>
+										<Pane layoutX="390.0" layoutY="61.0" prefHeight="152.0"
+											prefWidth="308.0" style="-fx-background-color: #e74c3c;">
+											<children>
+												<FontAwesomeIconView fill="WHITE"
+													glyphName="CALCULATOR" layoutX="14.0" layoutY="94.0"
+													size="46" />
+												<Separator layoutX="69.0" layoutY="14.0"
+													orientation="VERTICAL" prefHeight="125.0" prefWidth="4.0" />
+												<Label fx:id="lblMonthAmountDespesa" layoutX="88.0"
+													layoutY="27.0" text="MonthAmount" textFill="WHITE">
+													<font>
+														<Font name="Roboto" size="24.0" />
+													</font>
+												</Label>
+												<Label layoutX="88.0" layoutY="62.0"
+													text="Total Despesas" textFill="WHITE">
+													<font>
+														<Font name="Roboto" size="24.0" />
+													</font>
+												</Label>
+												<Label layoutX="88.0" layoutY="91.0"
+													text="Últimos 30 dias" textFill="WHITE">
+													<font>
+														<Font name="Roboto" size="16.0" />
+													</font>
+												</Label>
+												<Label fx:id="lblPeriodoDespesa"
+													contentDisplay="CENTER" layoutX="87.0" layoutY="113.0"
+													text="lblPeriodoDespesa" textFill="WHITE">
+													<font>
+														<Font name="Roboto" size="16.0" />
+													</font>
+												</Label>
+											</children>
+											<effect>
+												<DropShadow />
+											</effect>
+										</Pane>
+										<Pane layoutX="712.0" layoutY="61.0" prefHeight="152.0"
+											prefWidth="293.0" style="-fx-background-color: #2ecc71;">
+											<children>
+												<FontAwesomeIconView fill="WHITE"
+													glyphName="MONEY" layoutX="10.0" layoutY="94.0" size="46" />
+												<Separator layoutX="69.0" layoutY="15.0"
+													orientation="VERTICAL" prefHeight="125.0" prefWidth="4.0" />
+												<Label fx:id="lblMonthAmountReceita" layoutX="90.0"
+													layoutY="27.0" text="MonthAmount" textFill="WHITE">
+													<font>
+														<Font name="Roboto" size="24.0" />
+													</font>
+												</Label>
+												<Label layoutX="90.0" layoutY="62.0"
+													text="Total Receitas" textFill="WHITE">
+													<font>
+														<Font name="Roboto" size="24.0" />
+													</font>
+												</Label>
+												<Label layoutX="90.0" layoutY="91.0"
+													text="Últimos 30 dias" textFill="WHITE">
+													<font>
+														<Font name="Roboto" size="16.0" />
+													</font>
+												</Label>
+												<Label fx:id="lblPeriodoReceita" layoutX="90.0"
+													layoutY="114.0" text="lblPeriodoReceita" textFill="WHITE">
+													<font>
+														<Font name="Roboto" size="16.0" />
+													</font>
+												</Label>
+											</children>
+											<effect>
+												<DropShadow />
+											</effect>
+										</Pane>
+										<LineChart fx:id="lineChart" layoutX="6.0"
+											layoutY="224.0" prefHeight="436.0" prefWidth="1026.0"
+											title="Despesas e Receitas - Últimos 30 dias">
+											<xAxis>
+												<CategoryAxis side="BOTTOM" fx:id="xAxis" />
+											</xAxis>
+											<yAxis>
+												<NumberAxis fx:id="yAxis" side="LEFT" />
+											</yAxis>
+										</LineChart>
+									</children>
+								</AnchorPane>
+							</children>
+						</VBox>
+					</children>
+				</AnchorPane>
+			</children>
+		</StackPane>
+	</children>
 </AnchorPane>

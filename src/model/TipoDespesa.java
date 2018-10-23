@@ -15,6 +15,8 @@ import javax.persistence.Table;
 
 //Using @NamedQuery to get all data of Tipo Despesa
 @NamedQuery(name = "TipoDespesa.getAllTipoDespesa", query = "SELECT td FROM TipoDespesa td")
+@NamedQuery(name = "TipoDespesa.verifyExistsTipoDespesa", 
+			query = "FROM TipoDespesa WHERE nomeTipoDespesa=:nomeTipoDespesa")
 @Entity
 @Table(name = "tipo_despesa")
 public class TipoDespesa {

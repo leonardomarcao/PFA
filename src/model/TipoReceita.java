@@ -10,7 +10,8 @@ import javax.persistence.Table;
 
 //Using @NamedQuery to get all data of Tipo Despesa
 @NamedQuery(name = "TipoReceita.getAllTipoReceita", query = "SELECT tr FROM TipoReceita tr")
-
+@NamedQuery(name = "TipoReceita.verifyExistsTipoReceita", 
+			query = "FROM TipoReceita WHERE nomeTipoReceita=:nomeTipoReceita")
 @Entity
 @Table(name = "tipo_receita")
 public class TipoReceita {
