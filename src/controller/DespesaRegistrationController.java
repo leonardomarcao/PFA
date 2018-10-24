@@ -14,6 +14,8 @@ import java.util.stream.Collectors;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.validation.NumberValidator;
+import com.jfoenix.validation.RequiredFieldValidator;
 
 import dao.DespesaDAO;
 import dao.TipoDespesaDAO;
@@ -74,7 +76,44 @@ public class DespesaRegistrationController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		System.out.println("test");
+		RequiredFieldValidator validatorInputRequired = new RequiredFieldValidator();
+		validatorInputRequired.setMessage("Campo obrigat√≥rio");
+
+		NumberValidator validatorNumber = new NumberValidator();
+		validatorNumber.setMessage("Somente n√∫meros!");			
+
+		// required field validator add or alter Despesa
+		edtValorDespesa.getValidators().add(validatorNumber);
+		edtValorDespesa.getValidators().add(validatorInputRequired);
+		cxTipoDespesa.getValidators().add(validatorInputRequired);
+		edtDescricaoDespesa.getValidators().add(validatorInputRequired);
+		edtDataDespesa.getValidators().add(validatorInputRequired);			
+				
+		// set focusedproperty listener for required field validator
+		edtValorDespesa.focusedProperty().addListener((o, oldVal, newVal) -> {
+			if (!newVal) {
+				edtValorDespesa.validate();
+			}
+		});
+		
+		cxTipoDespesa.focusedProperty().addListener((o, oldVal, newVal) -> {
+			if (!newVal) {
+				cxTipoDespesa.validate();
+			}
+		});
+		
+		edtDescricaoDespesa.focusedProperty().addListener((o, oldVal, newVal) -> {
+			if (!newVal) {
+				edtDescricaoDespesa.validate();
+			}
+		});
+		
+		edtDataDespesa.focusedProperty().addListener((o, oldVal, newVal) -> {
+			if (!newVal) {
+				edtDataDespesa.validate();
+			}
+		});								
+		
 		if (getDespesa() != null) {
 			edtValorDespesa.setText(String.valueOf((getDespesa().getValorDespesa())));
 			loadCxTipoDespesa();
@@ -146,43 +185,47 @@ public class DespesaRegistrationController implements Initializable {
 				setTipoDespesaFromCx(tipoDespesa);
 			}
 		}else
-			alertDialog("AtenÁ„o", "Duplicidade de dados!", "J· existe um tipo de despesa "
+			alertDialog("Aten√ß√£o", "Duplicidade de dados!", "J√° existe um tipo de despesa "
 				   	  + "com o mesmo nome cadastrado! Por favor, tente com outro nome.", AlertType.ERROR);
 	}
 
 	@FXML
 	void saveDespesa(MouseEvent event) {
 		if (getDespesa() == null) {
-			Despesa despesa = new Despesa((Double.valueOf(edtValorDespesa.getText())), (getTipoDespesaFromCx()),
-					(getUsuario()),
-					(Date.from((edtDataDespesa.getValue().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()))),
-					edtDescricaoDespesa.getText());
-			DespesaDAO despesaDAO = new DespesaDAO();
-			despesaDAO.saveDespesa(despesa);
-			getTableViewDespesa().getItems().add(despesa);
-			if (alertDialogConfirmationTipoDespesa() == true) {
-				clearControls();
-				edtValorDespesa.requestFocus();
-			} else {
+			if (validateFields()) {
+				Despesa despesa = new Despesa((Double.valueOf(edtValorDespesa.getText())), (getTipoDespesaFromCx()),
+						(getUsuario()),
+						(Date.from((edtDataDespesa.getValue().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()))),
+						edtDescricaoDespesa.getText());
+				DespesaDAO despesaDAO = new DespesaDAO();
+				despesaDAO.saveDespesa(despesa);
+				getTableViewDespesa().getItems().add(despesa);		
+				if (alertDialogConfirmationTipoDespesa() == true) {
+					clearControls();
+					edtValorDespesa.requestFocus();
+				} else {
+					Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+					window.close();
+				}
+			}
+		} else {
+			if (validateFields()) {
+				int pos = getTableViewDespesa().getSelectionModel().getSelectedIndex();
+				getTableViewDespesa().getItems().remove(getDespesa());
+				getDespesa().setValorDespesa((Double.valueOf(edtValorDespesa.getText())));
+				getDespesa().setTipoDespesa((getTipoDespesaFromCx()));
+				getDespesa().setDescricaoDespesa(edtDescricaoDespesa.getText());
+				getDespesa().setDataDespesa(
+						(Date.from((edtDataDespesa.getValue().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()))));
+				DespesaDAO despesaDAO = new DespesaDAO();
+				despesaDAO.mergeDespesa(getDespesa());
+				getTableViewDespesa().getItems().add(pos, getDespesa());
+				getTableViewDespesa().getSelectionModel().clearAndSelect(pos);
+				getTableViewDespesa().refresh();
+				alertDialog("Altera√ß√£o de Despesa", "A despesa foi alterada!", null, AlertType.INFORMATION);
 				Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 				window.close();
 			}
-		} else {
-			int pos = getTableViewDespesa().getSelectionModel().getSelectedIndex();
-			getTableViewDespesa().getItems().remove(getDespesa());
-			getDespesa().setValorDespesa((Double.valueOf(edtValorDespesa.getText())));
-			getDespesa().setTipoDespesa((getTipoDespesaFromCx()));
-			getDespesa().setDescricaoDespesa(edtDescricaoDespesa.getText());
-			getDespesa().setDataDespesa(
-					(Date.from((edtDataDespesa.getValue().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()))));
-			DespesaDAO despesaDAO = new DespesaDAO();
-			despesaDAO.mergeDespesa(getDespesa());
-			getTableViewDespesa().getItems().add(pos, getDespesa());
-			getTableViewDespesa().getSelectionModel().clearAndSelect(pos);
-			getTableViewDespesa().refresh();
-			alertDialog("AlteraÁ„o de Despesa", "A despesa foi alterada!", null, AlertType.INFORMATION);
-			Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-			window.close();
 		}
 	}
 
@@ -195,7 +238,7 @@ public class DespesaRegistrationController implements Initializable {
 		if (result.isPresent() && !result.get().isEmpty()) {
 			return result.get();					
 		} else if (result.isPresent() && result.get().isEmpty())
-			alertDialog("Cadastro de tipo de despesa", "AtenÁ„o!", "Nome do tipo de despesa n„o pode ser nulo.",
+			alertDialog("Cadastro de tipo de despesa", "Aten√ß√£o!", "Nome do tipo de despesa n√£o pode ser nulo.",
 					AlertType.ERROR);
 		return null;
 	}
@@ -224,8 +267,8 @@ public class DespesaRegistrationController implements Initializable {
 	private void loadCxTipoDespesa() {
 		List<TipoDespesa> listTipoDespesa = new TipoDespesaDAO().getAllTipoDespesa();
 		if (listTipoDespesa.isEmpty()) {
-			alertDialog("AtenÁ„o!", "N„o h· nenhum tipo de despesa cadastrado!", 
-					"Por favor, È necess·rio o cadastro de um \n" + "tipo de despesa para vincular a despesa", AlertType.WARNING);
+			alertDialog("Aten√ß√£o!", "N√£o h√° nenhum tipo de despesa cadastrado!", 
+					"Por favor, √© necess√°rio o cadastro de um \n" + "tipo de despesa para vincular a despesa", AlertType.WARNING);
 		} else {
 			setMapTipoDespesa((listTipoDespesa.stream().sorted(Comparator.comparing(TipoDespesa::getNomeTipoDespesa))
 					.collect(Collectors.toMap(TipoDespesa::getNomeTipoDespesa, Function.identity()))));
@@ -237,7 +280,7 @@ public class DespesaRegistrationController implements Initializable {
 
 	public boolean alertDialogConfirmationTipoDespesa() {
 		ButtonType buttonYes = new ButtonType("Sim");
-		ButtonType buttonNo = new ButtonType("N„o");
+		ButtonType buttonNo = new ButtonType("N√£o");
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Cadastro salvo!");
 		alert.setHeaderText("Cadastro salvo com sucesso!");
@@ -265,6 +308,15 @@ public class DespesaRegistrationController implements Initializable {
 		cxTipoDespesa.getSelectionModel().select(null);
 		edtDataDespesa.setValue(null);
 		edtDescricaoDespesa.clear();
+	}
+	
+	// validate fields
+	private Boolean validateFields() {
+		if (edtValorDespesa.validate() && cxTipoDespesa.validate() && edtDescricaoDespesa.validate()
+			&& edtDataDespesa.validate())  	
+			return true;
+		else
+			return false;
 	}
 
 }
