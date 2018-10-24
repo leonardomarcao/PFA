@@ -14,6 +14,8 @@ import java.util.stream.Collectors;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.validation.NumberValidator;
+import com.jfoenix.validation.RequiredFieldValidator;
 
 import dao.ReceitaDAO;
 import dao.TipoReceitaDAO;
@@ -74,7 +76,44 @@ public class ReceitaRegistrationController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		System.out.println("test");
+        RequiredFieldValidator validatorInputRequired = new RequiredFieldValidator();
+		validatorInputRequired.setMessage("Campo obrigat√≥rio");
+
+		NumberValidator validatorNumber = new NumberValidator();
+		validatorNumber.setMessage("Somente n√∫meros!");			
+
+		// required field validator add or alter Receita
+		edtValorReceita.getValidators().add(validatorNumber);
+		edtValorReceita.getValidators().add(validatorInputRequired);
+		cxTipoReceita.getValidators().add(validatorInputRequired);
+		edtDescricaoReceita.getValidators().add(validatorInputRequired);
+		edtDataReceita.getValidators().add(validatorInputRequired);			
+				
+		// set focusedproperty listener for required field validator
+		edtValorReceita.focusedProperty().addListener((o, oldVal, newVal) -> {
+			if (!newVal) {
+				edtValorReceita.validate();
+			}
+		});
+		
+		cxTipoReceita.focusedProperty().addListener((o, oldVal, newVal) -> {
+			if (!newVal) {
+				cxTipoReceita.validate();
+			}
+		});
+		
+		edtDescricaoReceita.focusedProperty().addListener((o, oldVal, newVal) -> {
+			if (!newVal) {
+				edtDescricaoReceita.validate();
+			}
+		});
+		
+		edtDataReceita.focusedProperty().addListener((o, oldVal, newVal) -> {
+			if (!newVal) {
+				edtDataReceita.validate();
+			}
+		});
+		
 		if (getReceita() != null) {
 			edtValorReceita.setText(String.valueOf((getReceita().getValorReceita())));
 			loadCxTipoReceita();
@@ -146,43 +185,47 @@ public class ReceitaRegistrationController implements Initializable {
 				setTipoReceitaFromCx(tipoReceita);
 			}
 		}else
-			alertDialog("AtenÁ„o", "Duplicidade de dados!", "J· existe um tipo de receita "
+			alertDialog("Aten√ß√£o", "Duplicidade de dados!", "J√° existe um tipo de receita "
 				   	  + "com o mesmo nome cadastrado! Por favor, tente com outro nome.", AlertType.ERROR);
 	}
 
 	@FXML
 	void saveReceita(MouseEvent event) {
 		if (getReceita() == null) {
-			Receita receita = new Receita((Double.valueOf(edtValorReceita.getText())), (getTipoReceitaFromCx()),
-					(getUsuario()),
-					(Date.from((edtDataReceita.getValue().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()))),
-					edtDescricaoReceita.getText());
-			ReceitaDAO receitaDAO = new ReceitaDAO();
-			receitaDAO.saveReceita(receita);
-			getTableViewReceita().getItems().add(receita);
-			if (alertDialogConfirmationTipoReceita() == true) {
-				clearControls();
-				edtValorReceita.requestFocus();
-			} else {
+			if (validateFields()) {
+				Receita receita = new Receita((Double.valueOf(edtValorReceita.getText())), (getTipoReceitaFromCx()),
+						(getUsuario()),
+						(Date.from((edtDataReceita.getValue().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()))),
+						edtDescricaoReceita.getText());
+				ReceitaDAO receitaDAO = new ReceitaDAO();
+				receitaDAO.saveReceita(receita);
+				getTableViewReceita().getItems().add(receita);
+				if (alertDialogConfirmationTipoReceita() == true) {
+					clearControls();
+					edtValorReceita.requestFocus();
+				} else {
+					Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+					window.close();
+				}
+			}
+		} else {
+			if (validateFields()) {
+				int pos = getTableViewReceita().getSelectionModel().getSelectedIndex();
+				getTableViewReceita().getItems().remove(getReceita());
+				getReceita().setValorReceita((Double.valueOf(edtValorReceita.getText())));
+				getReceita().setTipoReceita((getTipoReceitaFromCx()));
+				getReceita().setDescricaoReceita(edtDescricaoReceita.getText());
+				getReceita().setDataReceita(
+						(Date.from((edtDataReceita.getValue().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()))));
+				ReceitaDAO receitaDAO = new ReceitaDAO();
+				receitaDAO.mergeReceita(getReceita());
+				getTableViewReceita().getItems().add(pos, getReceita());
+				getTableViewReceita().getSelectionModel().clearAndSelect(pos);
+				getTableViewReceita().refresh();
+				alertDialog("Altera√ß√£o de Receita", "A receita foi alterada!", null, AlertType.INFORMATION);
 				Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 				window.close();
 			}
-		} else {
-			int pos = getTableViewReceita().getSelectionModel().getSelectedIndex();
-			getTableViewReceita().getItems().remove(getReceita());
-			getReceita().setValorReceita((Double.valueOf(edtValorReceita.getText())));
-			getReceita().setTipoReceita((getTipoReceitaFromCx()));
-			getReceita().setDescricaoReceita(edtDescricaoReceita.getText());
-			getReceita().setDataReceita(
-					(Date.from((edtDataReceita.getValue().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()))));
-			ReceitaDAO receitaDAO = new ReceitaDAO();
-			receitaDAO.mergeReceita(getReceita());
-			getTableViewReceita().getItems().add(pos, getReceita());
-			getTableViewReceita().getSelectionModel().clearAndSelect(pos);
-			getTableViewReceita().refresh();
-			alertDialog("AlteraÁ„o de Receita", "A receita foi alterada!", null, AlertType.INFORMATION);
-			Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-			window.close();
 		}
 	}
 
@@ -195,7 +238,7 @@ public class ReceitaRegistrationController implements Initializable {
 		if (result.isPresent() && !result.get().isEmpty()) {
 			return result.get();					
 		} else if (result.isPresent() && result.get().isEmpty())
-			alertDialog("Cadastro de tipo de receita", "AtenÁ„o!", "Nome do tipo de receita n„o pode ser nulo.",
+			alertDialog("Cadastro de tipo de receita", "Aten√ß√£o!", "Nome do tipo de receita n√£o pode ser nulo.",
 					AlertType.ERROR);
 		return null;
 	}
@@ -224,8 +267,8 @@ public class ReceitaRegistrationController implements Initializable {
 	private void loadCxTipoReceita() {
 		List<TipoReceita> listTipoReceita = new TipoReceitaDAO().getAllTipoReceita();
 		if (listTipoReceita.isEmpty()) {
-			alertDialog("AtenÁ„o!", "N„o h· nenhum tipo de receita cadastrado!", 
-					"Por favor, È necess·rio o cadastro de um \n" + "tipo de receita para vincular a receita", AlertType.WARNING);
+			alertDialog("Aten√ß√£o!", "N√£o h√° nenhum tipo de receita cadastrado!", 
+					"Por favor, √© necess√°rio o cadastro de um \n" + "tipo de receita para vincular a receita", AlertType.WARNING);
 		} else {
 			setMapTipoReceita((listTipoReceita.stream().sorted(Comparator.comparing(TipoReceita::getNomeTipoReceita))
 					.collect(Collectors.toMap(TipoReceita::getNomeTipoReceita, Function.identity()))));
@@ -237,7 +280,7 @@ public class ReceitaRegistrationController implements Initializable {
 
 	public boolean alertDialogConfirmationTipoReceita() {
 		ButtonType buttonYes = new ButtonType("Sim");
-		ButtonType buttonNo = new ButtonType("N„o");
+		ButtonType buttonNo = new ButtonType("N√£o");
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Cadastro salvo!");
 		alert.setHeaderText("Cadastro salvo com sucesso!");
@@ -265,6 +308,15 @@ public class ReceitaRegistrationController implements Initializable {
 		cxTipoReceita.getSelectionModel().select(null);
 		edtDataReceita.setValue(null);
 		edtDescricaoReceita.clear();
+	}
+	
+	// validate fields
+	private Boolean validateFields() {
+		if (edtValorReceita.validate() && cxTipoReceita.validate() && edtDescricaoReceita.validate()
+			&& edtDataReceita.validate())  	
+			return true;
+		else
+			return false;
 	}
 
 }
