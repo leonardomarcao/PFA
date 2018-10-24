@@ -11,7 +11,7 @@
 		<property name="connection.url">jdbc:postgresql://localhost/pfa</property> <!-- BD Mane -->
 		<property name="connection.driver_class">org.postgresql.Driver</property> <!-- DB Driver -->
 		<property name="connection.username">postgres</property> <!-- DB User -->
-		<property name="connection.password">010203.leo</property> <!-- DB Password -->
+		<property name="connection.password">password</property> <!-- DB Password --> <!-- update this -->
 
 		<property name="dialect">org.hibernate.dialect.PostgreSQLDialect</property> <!-- DB Dialect -->
 		<property name="hbm2ddl.auto">update</property> <!-- create / create-drop / update -->

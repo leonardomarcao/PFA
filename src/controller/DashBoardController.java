@@ -119,6 +119,7 @@ public class DashBoardController implements Initializable {
 			// considerar data de início
 			if (receita.getDataReceita().after(Date.valueOf(thirty.plusDays(-1))) &&
 					receita.getDataReceita().before((Date.valueOf(now.plusDays(1)))))
+				totalReceitaUltimosTrintaDias += receita.getValorReceita();
 		lblMonthAmountReceita.setText(String.valueOf(String.format("R$ %.2f", (totalReceitaUltimosTrintaDias))));
 		lblPeriodoReceita.setText(thirty.format(formatter) + " à " + now.format(formatter));
 	}

@@ -3,14 +3,24 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/d113af0da84b4ab9b17b8ffc29c58ecf?branch=admin-javafx)](https://app.codacy.com/project/leonardomarcao/PFA/dashboard)
 
+### PFA - Login
 <p align="center">
-  <img src="https://i.imgur.com/nvRjXPj.png" alt="">
-  <span size="6">PFA - Login</span>
+  <img src="https://i.imgur.com/nvRjXPj.png" alt=""><br>  
 </p>
 
+### PFA - Dashboard
 <p align="center">
-  <img src="https://i.imgur.com/IaBtkuF.png" alt="">
-  <span size="6">PFA - ADMIN PANEL (contains: Dashboard, Despesa and Receita)</span>
+  <img src="https://i.imgur.com/cJChgA7.png" alt=""><br>  
+</p>
+
+### PFA - Table View Despesa with Despesa Registration
+<p align="center">
+  <img src="https://i.imgur.com/lCg9kgv.png" alt=""><br>  
+</p>
+
+### PFA - Table View Receita with Receita Registration
+<p align="center">
+  <img src="https://i.imgur.com/Fxn1M7Z.png" alt=""><br>  
 </p>
 
 ## About
@@ -20,6 +30,24 @@ The Personal Financial Assistant's main objective is to optimize the flow of exp
 ## How does it work?
 
 The PFA was architected and developed to be as organized and streamlined as possible. We follow a whole process of development, workflow, software architecture and recent tools. The result obtained through this is the wide maintainability of the same.
+
+### Data Flow Diagram
+
+<p align="center">
+  <img src="https://i.imgur.com/lxoH5Ym.png" alt=""><br>  
+</p>
+
+### Class Diagram
+
+<p align="center">
+  <img src="https://i.imgur.com/X9v9Or1.png" alt=""><br>  
+</p>
+
+### MER
+
+<p align="center">
+  <img src="https://i.imgur.com/aznvTxU.png" alt=""><br>  
+</p>
 
 ## Installation 
 
