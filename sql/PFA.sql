@@ -211,6 +211,8 @@ CREATE TRIGGER tr_after_delete_receita
 //END
 */
 
+
+/*
 --test trigger using random data
 INSERT INTO usuario (nome_usuario, 
 		     rua_endereco, numero_endereco, cep_endereco, bairro_endereco, 
@@ -231,6 +233,7 @@ update receita set valor_receita=550 where id_receita=1;
 delete from receita where id_receita=1;	    
 select * from receita inner join tipo_receita on receita.id_tipo_receita=tipo_receita.id_tipo_receita;
 select * from usuario;	
+*/
 
 
 
