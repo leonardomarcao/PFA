@@ -67,18 +67,20 @@ The PFA was architected and developed to be as organized and streamlined as poss
 3. Extract the PFA-master.zip
 
 ### Setting Up PFA Project
-1. Open up Eclipse.
-2. Open project.
-3. Verify and set up dependences libraries 
-4. Add source folder called "resources" (the configuration will used by Hibernate)
-5. Go to in Run configuration (using Eclipse IDE) and on VM Options put the following: 
-`--add-modules java.xml.bind` (this is caused by JDK 10.0.2, because Hibernate tries to use for the "hibernate.cfg. xml)
+1. Run PFA.sql using PostgreSQL 
+2. Open up Eclipse.
+3. Open project.
+4. Verify and set up dependences libraries 
+5. Add source folder called "resources" (the configuration will used by Hibernate)
+6. Set up Hibernate.cfg.xml
+7. Go to in Run configuration (using Eclipse IDE) and on VM Options put the following: 
+`--add-modules java.xml.bind` (this is caused by JDK 10.0.2, because Hibernate tries to use module xml.bind for the hibernate.cfg. xml)
 
 ## License 
 
 MIT License
 
-Copyright (c) 2018 Leonardo Marc„o
+Copyright (c) 2018 Leonardo Marc√£o
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
