@@ -70,7 +70,7 @@ The PFA was architected and developed to be as organized and streamlined as poss
 1. Run PFA.sql using PostgreSQL 
 2. Open up Eclipse.
 3. Open project.
-4. Verify and set up dependences libraries 
+4. Verify and set up dependences libraries (all libraries are in the lib folder) 
 5. Add source folder called "resources" (the configuration will used by Hibernate)
 6. Set up Hibernate.cfg.xml
 7. Go to in Run configuration (using Eclipse IDE) and on VM Options put the following: 
